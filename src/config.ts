@@ -5,7 +5,7 @@ export const SITE: Site = {
   author: "davlgd",
   desc: "Welcome to davlgd's tech lab, a blog where I share my thoughts, software/hardware experiments and discoveries",
   title: "davlgd tech blog",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "davlgd-lab.webp",
   lightAndDarkMode: true,
   postPerPage: 10,
 };

@@ -73,7 +73,8 @@ clever scale --build-flavor M # A bigger instance to quickly build the website
 clever env set CC_WEBROOT "/dist"
 clever env set CC_OVERRIDE_BUILDCACHE "/dist"
 clever env set CC_NODE_VERSION "20"
-clever env set CC_POST_BUILD_HOOK "npm ci && npm run astro telemetry disable && npm run build"
+clever env set CC_PRE_BUILD_HOOK "npm ci && npm run astro telemetry disable"
+clever env set CC_POST_BUILD_HOOK "npm run build"
 ```
 
 You can also set them through [the Console](https://console.clever-cloud.com) or an import of the `.env` file of this repository:

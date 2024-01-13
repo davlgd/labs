@@ -24,10 +24,16 @@ export const LOGO_IMAGE = {
 
 export const SOCIALS: SocialObjects = [
   {
-    name: "Twitter",
+    name: "X",
     href: "https://x.com/davlgd",
     linkTitle: `${SITE.author} on X`,
     active: true,
+  },
+  {
+    name: "Twitter",
+    href: "https://x.com/davlgd",
+    linkTitle: `${SITE.author} on X`,
+    active: false,
   },
   {
     name: "Github",

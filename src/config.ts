@@ -8,6 +8,7 @@ export const SITE: Site = {
   ogImage: "davlgd-lab.webp",
   lightAndDarkMode: true,
   postPerPage: 10,
+  scheduledPostMargin: 135 * 60 * 1000, // 2h time difference + 15 minutes, ok for winter time
 };
 
 export const LOCALE = {

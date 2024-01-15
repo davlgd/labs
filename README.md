@@ -96,6 +96,8 @@ clever domain
 clever domain add your.domain.tld
 ```
 
+If you need to regularly rebuild the blog (for scheduled posts for example), follow [this tutorial](http://labs.davlgd.fr/posts/2024-01-schedule-posts-astropaper/).
+
 ### From GitHub
 
 You can link your GitHub account to your Clever Cloud account for an easier login. It will also enable automatic deployment after a push on a specific branch (it's how this blog is published).

@@ -14,6 +14,7 @@ const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
@@ -22,7 +23,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <Header />
   <main id="main-content">
     <section id="hero">
-      <h1 class="mr-2">Welcome to my Lab!</h1>
+      <h1>Welcome to my Lab!</h1>
       <a
         target="_blank"
         href="/rss.xml"
@@ -37,23 +38,22 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             d="M12 20.001h2C14 14.486 9.514 10 4 10v2c4.411 0 8 3.589 8 8.001z"
           ></path><circle cx="6" cy="18" r="2"></circle>
         </svg>
+        <span class="sr-only">RSS Feed</span>
       </a>
 
-      <p>After 20 years as a tech editor, currently serving as VP Products at Clever Cloud PaaS platform, 
-      I publish my thoughts and personal hardware/software experiments on this blog. It's <a href="https://github.com/davlgd/labs">open source</a>, <a href="/posts/2024-01-schedule-posts-astropaper">static</a>, <a href="/tags/astropaper">based on AstroPaper</a>.</p>
-      <p>Don't miss out latest posts and tech reviews, with still the same mantra : "If you don't know, ask; if you know, share."</p>
-     
-     <!--
       <p>
-        Read the blog posts or check
-        <LinkButton
-          className="underline decoration-dashed underline-offset-4 hover:text-skin-accent"
-          href="https://github.com/satnaing/astro-paper#readme"
-        >
-          README
-        </LinkButton> for more info.
+        After 20 years as a tech editor, currently serving as VP Products at
+        Clever Cloud PaaS platform, I publish my thoughts and personal
+        hardware/software experiments on this blog. It's <a
+          href="https://github.com/davlgd/labs">open source</a
+        >, <a href="/posts/2024-01-schedule-posts-astropaper">static</a>, <a
+          href="/tags/astropaper">based on AstroPaper</a
+        >.
       </p>
-      --> 
+      <p>
+        Don't miss out latest posts and tech reviews, with still the same mantra
+        : "If you don't know, ask; if you know, share."
+      </p>
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
@@ -63,7 +63,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           </div>
         )
       }
-      
     </section>
 
     <Hr />
@@ -76,47 +75,48 @@ const socialCount = SOCIALS.filter(social => social.active).length;
             <ul>
               {featuredPosts.map(({ data, slug }) => (
                 <Card
-                  href={`/posts/${slug}`}
+                  href={`/posts/${slug}/`}
                   frontmatter={data}
                   secHeading={false}
                 />
               ))}
             </ul>
           </section>
-          <Hr />
+          {recentPosts.length > 0 && <Hr />}
         </>
       )
     }
 
-    <section id="recent-posts">
-      <h2>Recent Posts</h2>
-      <ul>
-        {
-          sortedPosts
-            .filter(({ data }) => !data.featured)
-            .map(
+    {
+      recentPosts.length > 0 && (
+        <section id="recent-posts">
+          <h2>Recent Posts</h2>
+          <ul>
+            {recentPosts.map(
               ({ data, slug }, index) =>
                 index < 4 && (
                   <Card
-                    href={`/posts/${slug}`}
+                    href={`/posts/${slug}/`}
                     frontmatter={data}
                     secHeading={false}
                   />
                 )
-            )
-        }
-      </ul>
-      <div class="all-posts-btn-wrapper">
-        <LinkButton href="/posts">
-          All Posts
-          <svg xmlns="http://www.w3.org/2000/svg"
-            ><path
-              d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
-            ></path>
-          </svg>
-        </LinkButton>
-      </div>
-    </section>
+            )}
+          </ul>
+        </section>
+      )
+    }
+
+    <div class="all-posts-btn-wrapper">
+      <LinkButton href="/posts/">
+        All Posts
+        <svg xmlns="http://www.w3.org/2000/svg"
+          ><path
+            d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z"
+          ></path>
+        </svg>
+      </LinkButton>
+    </div>
   </main>
 
   <Footer />

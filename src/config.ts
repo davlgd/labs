@@ -1,8 +1,8 @@
 import type { Site, SocialObjects } from "./types";
-
 export const SITE: Site = {
   website: "https://labs.davlgd.fr", // replace this with your deployed domain
   author: "davlgd",
+  authorURL: "https://x.com/davlgd",
   desc: "Welcome to davlgd's tech lab, a blog where I share my thoughts, software/hardware experiments and discoveries",
   title: "davlgd tech blog",
   ogImage: "davlgd-lab.webp",

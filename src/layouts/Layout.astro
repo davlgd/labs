@@ -6,6 +6,7 @@ import { ViewTransitions } from "astro:transitions";
 export interface Props {
   title?: string;
   author?: string;
+  authorURL?: string;
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
@@ -17,6 +18,7 @@ export interface Props {
 const {
   title = SITE.title,
   author = SITE.author,
+  authorURL = SITE.authorURL,
   description = SITE.desc,
   ogImage = SITE.ogImage,
   canonicalURL = new URL(Astro.url.pathname, Astro.site).href,
@@ -29,6 +31,22 @@ const socialImageURL = new URL(
   ogImage ?? SITE.ogImage ?? "og.png",
   Astro.url.origin
 ).href;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: `${title}`,
+  image: `${socialImageURL}`,
+  datePublished: `${pubDatetime?.toISOString()}`,
+  ...(modDatetime && { dateModified: modDatetime.toISOString() }),
+  author: [
+    {
+      "@type": "Person",
+      name: `${author}`,
+      url: `${authorURL}`,
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -80,6 +98,9 @@ const socialImageURL = new URL(
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={socialImageURL} />
+
+    <!-- Google LD+JSON Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
     <meta name="theme-color" content="" />
 

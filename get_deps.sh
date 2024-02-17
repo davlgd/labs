@@ -1,9 +1,9 @@
 #!/bin/bash
 
 TWS_FILE="tws-linux-x86_64"
-TWS_VERSION="0.1.2"
+TWS_VERSION="0.1.3"
 TWS_URL="https://github.com/davlgd/tws/releases/download/v${TWS_VERSION}/${TWS_FILE}"
-TWS_SHA512="9639b30cf8499638eef10f1f2c125bf6c1efc51cb87d16d1107fe83dd112f55c8a93b8431abd57c6747861b5442c27b0b030bb13e0003c8af28d8613f73c6a0d"
+TWS_SHA512="5e632162172b48709e453717d25fb544f4512ffe8dadf5c9a02975ca0fd6f5d43f12937c14f1b42f2a07a8ce1a414557da1f2b9fd925376beeffc3ee0341b5fb"
 
 wget -q ${TWS_URL} ${TWS_URL}.sha512
 

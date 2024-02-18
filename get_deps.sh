@@ -15,5 +15,15 @@ else
   exit 1
 fi
 
+git clone https://github.com/vlang/v
+cd v
+make
+cd ..
+
+git clone https://github.com/davlgd/vserve_gzip
+cd vserve_gzip
+../v/v -prod . -o ../vgzip_server
+cd ..
+
 npm ci
 npm run astro telemetry disable

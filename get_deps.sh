@@ -1,5 +1,5 @@
 #!/bin/bash
-
+:'
 TWS_FILE="tws-linux-x86_64"
 TWS_VERSION="0.1.5"
 TWS_URL="https://github.com/davlgd/tws/releases/download/v${TWS_VERSION}/${TWS_FILE}"
@@ -24,6 +24,13 @@ git clone https://github.com/davlgd/vserve_gzip
 cd vserve_gzip
 ../v/v -prod . -o ../vgzip_server
 cd ..
+'
+
+git clone https://github.com/static-web-server/static-web-server.git
+cd static-web-server
+cargo build --release --features compression-brotli 
+cd ..
+cp static-web-server/target/release/static-web-server ./sws
 
 npm ci
 npm run astro telemetry disable

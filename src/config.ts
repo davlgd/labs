@@ -7,6 +7,7 @@ export const SITE: Site = {
   title: "davlgd tech blog",
   ogImage: "davlgd-lab.webp",
   lightAndDarkMode: true,
+  postPerIndex: 8,
   postPerPage: 10,
   scheduledPostMargin: 75 * 60 * 1000, // 1h time difference + 15 minutes, ok for winter time
 };

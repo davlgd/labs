@@ -61,6 +61,7 @@ const layoutProps = {
     </button>
   </div>
   <main id="main-content">
+    <img src={ogUrl} alt={title} class="mb-4 rounded-lg" />
     <h1 transition:name={slugifyStr(title)} class="post-title">{title}</h1>
     <Datetime
       pubDatetime={pubDatetime}

@@ -33,6 +33,8 @@ cd ..
 cp static-web-server/target/release/static-web-server ./sws
 '
 
+echo "${INDEXNOW}" > public/${INDEXNOW}.txt
+
 cargo install static-web-server --root .
 mv ./bin/static-web-server ./sws
 

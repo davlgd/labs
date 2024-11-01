@@ -1,4 +1,5 @@
 import type { Site, SocialObjects } from "./types";
+
 export const SITE: Site = {
   website: "https://labs.davlgd.fr", // replace this with your deployed domain
   author: "davlgd",
@@ -10,11 +11,17 @@ export const SITE: Site = {
   postPerIndex: 8,
   postPerPage: 10,
   scheduledPostMargin: 135 * 60 * 1000, // 2h time difference + 15 minutes, ok for winter time
+  showArchives: true,
+  editPost: {
+    url: "https://github.com/satnaing/astro-paper/edit/main/src/content/blog",
+    text: "Suggest Changes",
+    appendFilePath: true,
+  },
 };
 
 export const LOCALE = {
   lang: "en", // html lang code. Set this empty and default will be "en"
-  langTag: ["fr"], // BCP 47 Language Tags. Set this empty [] to use the environment default
+  langTag: ["en-EN"], // BCP 47 Language Tags. Set this empty [] to use the environment default
 } as const;
 
 export const LOGO_IMAGE = {

@@ -1,7 +1,8 @@
+import satori from "satori";
 import { SITE } from "@config";
 
-export default () => {
-  return (
+export default async () => {
+  return satori(
     <div
       style={{
         background: "#fefbfb",
@@ -82,6 +83,11 @@ export default () => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    {
+      width: 1200,
+      height: 630,
+      embedFont: true,
+    }
   );
 };

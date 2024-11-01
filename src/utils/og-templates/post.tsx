@@ -1,8 +1,9 @@
-import { SITE } from "@config";
+import satori from "satori";
 import type { CollectionEntry } from "astro:content";
+import { SITE } from "@config";
 
-export default (post: CollectionEntry<"blog">) => {
-  return (
+export default async (post: CollectionEntry<"blog">) => {
+  return satori(
     <div
       style={{
         background: "#fefbfb",
@@ -91,6 +92,11 @@ export default (post: CollectionEntry<"blog">) => {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    {
+      width: 1200,
+      height: 630,
+      embedFont: true,
+    }
   );
 };

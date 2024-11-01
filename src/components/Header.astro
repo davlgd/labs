@@ -4,7 +4,7 @@ import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
 
 export interface Props {
-  activeNav?: "posts" | "tags" | "contribute" | "website" | "search";
+  activeNav?: "posts" | "tags" | "archives" | "contribute" | "website" | "search";
 }
 
 const { activeNav } = Astro.props;
@@ -68,7 +68,7 @@ const { activeNav } = Astro.props;
           <li>
             <LinkButton
               href="/search/"
-              className={`focus-outline ${
+              className={`focus-outline p-3 sm:p-1 ${
                 activeNav === "search" ? "active" : ""
               } flex`}
               ariaLabel="search"
@@ -189,7 +189,7 @@ const { activeNav } = Astro.props;
   nav ul li:nth-last-child(2) {
     @apply col-span-1;
   }
-  nav a.active {
+  nav .active {
     @apply underline decoration-wavy decoration-2 underline-offset-4;
   }
   nav a.active svg {

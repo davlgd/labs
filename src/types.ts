@@ -3,7 +3,7 @@ import type socialIcons from "@assets/socialIcons";
 export type Site = {
   website: string;
   author: string;
-  authorURL: string;
+  profile: string;
   desc: string;
   title: string;
   ogImage?: string;
@@ -11,6 +11,12 @@ export type Site = {
   postPerIndex: number;
   postPerPage: number;
   scheduledPostMargin: number;
+  showArchives?: boolean;
+  editPost?: {
+    url?: URL["href"];
+    text?: string;
+    appendFilePath?: boolean;
+  };
 };
 
 export type SocialObjects = {

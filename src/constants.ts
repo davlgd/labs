@@ -2,6 +2,7 @@ import IconMail from "@/assets/icons/IconMail.svg";
 import IconGitLab from "@/assets/icons/IconGitLab.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconBrandX from "@/assets/icons/IconBrandX.svg";
+import IconBlueSky from "@/assets/icons/IconBlueSky.svg";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import { SITE } from "@/config";
@@ -20,6 +21,12 @@ export const SOCIALS = [
     icon: IconGitLab,
   },
   {
+    name: "BlueSky",
+    href: "https://bsky.app/profile/davlgd.fr",
+    linkTitle: `${SITE.title} on BlueSky`,
+    icon: IconBlueSky,
+  },
+  {
     name: "X",
     href: "https://x.com/davlgd",
     linkTitle: `${SITE.title} on X`,
@@ -34,6 +41,12 @@ export const SOCIALS = [
 ] as const;
 
 export const SHARE_LINKS = [
+  {
+    name: "BlueSky",
+    href: "https://bsky.app/intent/compose?text=",
+    linkTitle: `Share this post on BlueSky`,
+    icon: IconBlueSky,
+  },
   {
     name: "X",
     href: "https://x.com/intent/post?url=",

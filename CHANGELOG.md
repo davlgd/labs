@@ -2,6 +2,96 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v5.2.0 (2025-03-22)
+
+### Feat
+
+- add global and per-post timezone support (#491)
+
+### Fix
+
+- adjust nav bar alignment in heading (#492)
+- ensure only one search bar is displayed on nav link clicks (#489)
+
+## v5.1.1 (2025-03-20)
+
+### Fix
+
+- initial light mode flash in dark mode (#488)
+- broken editPost link and update editPost logic  (#487)
+- prevent overflow by adding line breaks in table codes (#485)
+
+## v5.1.0 (2025-03-18)
+
+### Feat
+
+- allow blog posts to be organized by subdirectories
+
+### Other
+
+- update blog post creation guide
+- upgrade astro and dependencies
+
+## v5.0.1 (2025-03-12)
+
+### Fix
+
+- update docker-compose (#475)
+- update import location in giscus example (#474)
+- add an option to disable dynamic OG image generation (#476)
+- remove unused `ogImage` size validation (#462)
+- correct Google Fonts API URL construction for proper weight fetching
+- align vertically in header nav (#460)
+- add font-weight param in og image card style (#453)
+
+### Docs
+
+- update giscus integration guide for AstroPaper v5 (#472)
+- update color schemes guide for AstroPaper v5 (#469)
+- update LaTeX equations guide in Astro blog posts (#461)
+
+## v5.0.0 (2025-03-08)
+
+### Feat
+
+- add pagefind for static search (#458)
+- update back button logic
+
+### Fix
+
+- ignore  in eslint
+- update blog table padding
+- remove unused back url in the card url
+- show light/dark button according to site setting
+- add author url in Google JSON-LD conditionally
+
+### Refactor
+
+- remove react dependency for UI interactions (#457)
+- separate config and constants
+- update import alias in files
+- update blog directory to `src/data/blog`
+
+
+- upgrade to Tailwind CSS v4
+- update import alias to `@/*`
+- upgrade Astro to v5 and related packages
+
+## v4.8.0 (2025-02-08)
+
+### Feat
+
+- add pencil icon before suggestion changes text (#405)
+
+### Fix
+
+- use tag name for display in tags page (#438)
+- exclude `/archives` from sitemap if it is disabled (#425)
+- add inline-block class to post title for improved view transition animation (#420)
+- sort archive posts by pubDatetime (#415)
+- focus search input on mount (#414)
+- replace twitter with x (#407)
+
 ## v4.7.0 (2024-10-15)
 
 ### Feat

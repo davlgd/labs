@@ -1,3 +1,2 @@
 #!/bin/bash -l
-clever link ${APP_ID}
-clever restart --quiet --without-cache
+clever restart --quiet --without-cache --app ${APP_ID}

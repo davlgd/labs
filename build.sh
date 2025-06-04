@@ -1,10 +1,7 @@
 #!/bin/bash
 
-npm i astro
-astro telemetry disable
-astro build
-
-pagefind --site dist
+npm i
+npm run build
 
 echo "gzip" && gzip --force -r dist
 echo "brotli" && find dist -type f -exec brotli --keep --best {} \;

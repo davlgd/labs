@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -euo pipefail
-
 npm i astro
 astro telemetry disable
 astro build

@@ -1,3 +1,4 @@
+import type { Props } from "astro";
 import IconMail from "@/assets/icons/IconMail.svg";
 import IconGitLab from "@/assets/icons/IconGitLab.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
@@ -7,7 +8,14 @@ import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import { SITE } from "@/config";
 
-export const SOCIALS = [
+interface Social {
+  name: string;
+  href: string;
+  linkTitle: string;
+  icon: (_props: Props) => Element;
+}
+
+export const SOCIALS: Social[] = [
   {
     name: "Github",
     href: "https://github.com/davlgd/labs",
@@ -40,7 +48,7 @@ export const SOCIALS = [
   },
 ] as const;
 
-export const SHARE_LINKS = [
+export const SHARE_LINKS: Social[] = [
   {
     name: "BlueSky",
     href: "https://bsky.app/intent/compose?text=",

@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v5.4.2 (2025-06-15)
+
+### Fix
+
+- broken typography in about layout (#541)
+- remove extra padding in fenced code blocks (#540)
+
+## v5.4.1 (2025-06-14)
+
+### Fix
+
+- make heading anchors in article visible on mobile (#537)
+
+### Refactor
+
+- update tailwind typography css overrides (#538)
+
+## v5.4.0 (2025-06-14)
+
+### Feat
+
+- add file name transformer for fenced code blocks (#535)
+- add RTL language support (#531)
+- add Shiki transformers for better syntax highlighting (#534)
+
+### Fix
+
+- replace broken prev/next links with correct paths (#533)
+
+## v5.3.0 (2025-06-11)
+
+### Feat
+
+- improve back-to-top button behavior (#520)(#527)
+
+### Fix
+
+- navigation flicker on Android when in dark mode (#494)
+- add scroll offset for anchor targets (#506)
+- add types for constants to avoid type errors when empty (#501)
+- update heading alignment and font-size (#473)
+
+### Refactor
+
+- extract redundant max-width into utility (#525)
+- use new astro env (#507)
+
 ## v5.2.0 (2025-03-22)
 
 ### Feat

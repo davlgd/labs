@@ -23,8 +23,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 <Layout>
   <Header />
   <main id="main-content" data-layout="index">
-    <section id="hero">
-      <h1 class="my-4 inline-block text-3xl font-bold sm:my-8 sm:text-3xl">
+    <section id="hero" class="pt-8 pb-6">
+      <h1 class="inline-block text-3xl font-bold sm:text-3xl">
         Welcome to my Lab!
       </h1>
       <a
@@ -37,12 +37,12 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         <IconRss
           width={20}
           height={20}
-          class="scale-125 stroke-accent stroke-3"
+          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
         />
         <span class="sr-only">RSS Feed</span>
       </a>
 
-      <p>
+      <p class="mt-4">
         After 20 years as a tech editor, currently serving as VP Products at
         Clever Cloud PaaS platform, I publish my thoughts and personal
         hardware/software experiments on this blog. It's <a
@@ -52,14 +52,13 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         >.
       </p>
       <p class="mt-4">
-        Don't miss out latest posts and tech reviews, with still the same mantra
-        : "If you don't know, ask; if you know, share."
+        Don't miss out latest posts and tech reviews, with still the same mantra: "If you don't know, ask; if you know, share."
       </p>
       {
         // only display if at least one social link is enabled
         SOCIALS.length > 0 && (
-          <div class="mt-4 pb-6 flex flex-col sm:flex-row sm:items-center">
-            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0">Follow me on social platforms:</div>
+          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
             <Socials />
           </div>
         )
@@ -71,7 +70,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     {
       featuredPosts.length > 0 && (
         <>
-          <section id="featured" class="pt-6 pb-6">
+          <section id="featured" class="pt-12">
             <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
             <ul>
               {featuredPosts.map(data => (
@@ -86,7 +85,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
     {
       recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-6">
+        <section id="recent-posts" class="pt-12 pb-6">
           <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
           <ul>
             {recentPosts.map(
@@ -101,7 +100,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     <div class="my-8 text-center">
       <LinkButton href="/posts/">
         All Posts
-        <IconArrowRight class="inline-block" />
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
       </LinkButton>
     </div>
   </main>

@@ -39,5 +39,12 @@ export default defineConfig({
     optimizeDeps: {
       exclude: ["@resvg/resvg-js"],
     },
-  }
+  },
+  image: {
+    responsiveStyles: true,
+    layout: "constrained",
+  },
+  experimental: {
+    preserveScriptOrder: true,
+  },
 });

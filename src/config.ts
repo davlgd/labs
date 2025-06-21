@@ -14,7 +14,7 @@ export const SITE = {
   editPost: {
     enabled: true,
     text: "Suggest Changes",
-    url: "https://github.com/davlgd/labs/tree/main/src/data/blog",
+    url: "https://github.com/davlgd/labs/tree/main/",
   },
   dynamicOgImage: true,
   dir: "ltr", // "rtl" | "auto"

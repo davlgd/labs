@@ -21,6 +21,7 @@
     "dayjs": "^1.11.13",
     "lodash.kebabcase": "^4.1.1",
     "node-addon-api": "^8.5.0",
+    "node-gyp": "^12.2.0",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
     "satori": "^0.15.2",

@@ -41,4 +41,4 @@ npm run dev
 
 As everything was fine, I created [a new commit](https://github.com/davlgd/labs/commit/3a541ceb159f54dcb9e32a11b840f0222faf9080) and pushed it. The blog post you're reading is on AstroPaper v4! The next step is to review a few more settings, like the new social icons or custom share buttons.
 
-Maybe tommorow.
+Maybe tomorrow.

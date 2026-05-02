@@ -13,7 +13,7 @@ tags:
 ogImage: /src/assets/images/2024-03-wasm-compiler-zig.webp
 ---
 
-Some days ago, MJ Grzymek published an interesting piece on [his blog](https://blog.mjgrzymek.com/blog/zigwasm) about how Zig can be compiled in WASM and used for efficient web development. It reminded me I want to write about Zig and WASM for months.
+Some days ago, MJ Grzymek published an interesting piece on [his blog](https://blog.mjgrzymek.com/blog/zigwasm) about how Zig can be compiled in WASM and used for efficient web development. It reminded me I've wanted to write about Zig and WASM for months.
 
 Not because I'm in love with this language, I find it messy (and I'm not a low level guy). But its compiler is dope! Notably, it allows you to compile C/C++ code to WASM/WASI. And that could be a game changer!
 
@@ -68,7 +68,7 @@ int main() {
         } else if (guess < number) {
             printf("Higher number please!\n");
         } else {
-            printf("You guessed %d it in %d attempts\n", number, attempts);
+            printf("You guessed it in %d attempts\n", attempts);
         }
     } while (guess != number);
 
@@ -127,14 +127,14 @@ Compile it with `zig` and run it:
 
 ```bash
 zig c++ analyze.cpp -o analyze
-./analyze analyze.cpp | jq
+./analyze < analyze.cpp | jq
 ```
 
 It will show you the number of lines, characters, words, JSON formatted.
 
 ## Compile (some of) your C/C++ code to WASM/WASI
 
-But the `zig` compiler also have a `-target` option, which can be used to compile previous C/C++ code to [WASM/WASI](https://github.com/WebAssembly/WASI) with no changes.
+But the `zig` compiler also has a `-target` option, which can be used to compile previous C/C++ code to [WASM/WASI](https://github.com/WebAssembly/WASI) with no changes.
 
 Thus, it can run on any platform with a WASM runtime, such as [Wasmtime](https://wasmtime.dev/):
 

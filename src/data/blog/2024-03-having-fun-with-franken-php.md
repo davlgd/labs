@@ -16,11 +16,11 @@ ogImage: /src/assets/images/2024-03-fun-php.webp
 
 ## The former star returns
 
-Like lots of old language it progressively became a (heavy) mess, leaving the hype to newcomers. But unlike many others, it has been able to reform.
+Like lots of old languages, it progressively became a (heavy) mess, leaving the hype to newcomers. But unlike many others, it has been able to reform.
 
 Thus, its ecosystem is enjoying a breath of fresh air in recent years, with new tools and cool projects using them. And not just WordPress anymore. The [Laravel](https://laravel.com/) framework, came in 2011 to challenge [Symfony](https://symfony.com/) (2005). The [Composer](https://github.com/composer/composer) package manager, first released in 2012, quickly became the standard.
 
-PHP 7.x, born in 2015, was a big step forward. At the same time, Facebook announced Hack, a PHP dialect, and [the HHVM virtual machine](https://github.com/facebook/hhvm). Then, everybody asked: why is such a big tech still using PHP and try to enhance it?
+PHP 7.x, born in 2015, was a big step forward. Around the same time, Facebook announced Hack, a PHP dialect, and [the HHVM virtual machine](https://github.com/facebook/hhvm). Then, everybody asked: why is such a big tech still using PHP and trying to enhance it?
 
 The fame was definitely back. The PHP 8.0 version, released in 2020, came with JIT and lots of new features. This branch is now getting better at every release, with [a pretty stable schedule](https://www.php.net/supported-versions.php).
 
@@ -47,7 +47,7 @@ curl_setopt($curlRequest, CURLOPT_FOLLOWLOCATION, true);
 curl_setopt($curlRequest, CURLOPT_TIMEOUT, 10);
 curl_exec($curlRequest);
 
-$status= curl_getinfo($curlRequest, CURLINFO_HTTP_CODE);
+$status = curl_getinfo($curlRequest, CURLINFO_HTTP_CODE);
 
 echo "The website at the URL '{$url}' is " . (
     $status == 200 ? "available"
@@ -93,7 +93,7 @@ box compile
 bin/urlCheck.phar https://httpstat.us
 ```
 
-The result is a PHP script with a [shebang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>), that you can execute (if PHP is installed on your system). Note that its size (1107B) is twice the initial script's (599B). To generate a SHA-512 sum and check it:
+The result is a PHP script with a [shebang](<https://en.wikipedia.org/wiki/Shebang_(Unix)>), that you can execute (if PHP is installed on your system). Note that its size (1107B) is nearly twice the initial script's (599B). To generate a SHA-512 sum and check it:
 
 ```bash
 box verify bin/urlCheck.phar
@@ -225,7 +225,7 @@ Then start frankenPHP with the `www/` folder as web root:
 ./frankenPHP php-server -r www/
 ```
 
-And... it works! You can access [http://localhost:8080/setup-nextcloud.php](http://localhost:8080/setup-nextcloud.php) with no modules to install, no configuration to make, no PHP-FPM to start. It's possible to go further with a `Caddyfile` or using FrankenPHP's features to create a more complex setup, or [a binary](https://github.com/davlgd/frankenphp-binary-demo). Let's experience it yourself 😉.
+And... it works! You can access [http://localhost:8080/setup-nextcloud.php](http://localhost:8080/setup-nextcloud.php) with no modules to install, no configuration to make, no PHP-FPM to start. It's possible to go further with a `Caddyfile` or using FrankenPHP's features to create a more complex setup, or [a binary](https://github.com/davlgd/frankenphp-binary-demo). Try it yourself 😉.
 
 ## To the Cloud and beyond!
 

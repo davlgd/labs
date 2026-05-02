@@ -14,7 +14,7 @@ draft: false
 
 As some of you may know, I'm a fan of [V](https://vlang.io/), a programming language inspired by [Go](https://go.dev/) but trying to do better on many fronts, with great tooling and native libraries. You can learn more in [its documentation](https://docs.vlang.io/introduction.html), using [its playground](https://play.vlang.io/) or watching [this quickie session](https://www.youtube.com/watch?v=YEiWEiamXrk) from Devoxx France 2024.
 
-I've already covered some aspects of V in a previous article detailing [how to create a tiny web server](/posts/2024-02-how-own-web-server-vlang/), which leads me [to publish tVeb](https://github.com/davlgd/tVeb). More recently, I decided to explore the `cli` module of V, whose aim is to provide a simple way to create application with commands, flags, help, man, etc.
+I've already covered some aspects of V in a previous article detailing [how to create a tiny web server](/posts/2024-02-how-own-web-server-vlang/), which led me [to publish tVeb](https://github.com/davlgd/tVeb). More recently, I decided to explore the `cli` module of V, whose aim is to provide a simple way to create applications with commands, flags, help, man, etc.
 
 So I decided to create a simple CLI using another great included module: `compress`. As you may have guessed, it compresses data. In my case, files.
 
@@ -22,7 +22,7 @@ To follow this tutorial [you'll need V](https://docs.vlang.io/installing-v-from-
 
 ## Compressing files with V
 
-Let's create a new folder and a `main.v` file. For this first step, it creates a text file and compress it with `gzip`. Here we'll assume the folder is empty, so we don't have to check if the file already exists for example:
+Let's create a new folder and a `main.v` file. For this first step, it creates a text file and compresses it with `gzip`. Here we'll assume the folder is empty, so we don't have to check if the file already exists for example:
 
 ```v
 import os

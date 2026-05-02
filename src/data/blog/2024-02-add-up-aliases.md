@@ -10,11 +10,11 @@ tags:
 ogImage: /src/assets/images/2024-02-update-sky.webp
 ---
 
-I’m an update junkie. I like my system and my applications to be up to date. In the new mobile « App Store » centric approach to the world, it’s quite simple. But that word is too bland and centralized to please me. I’m more of a terminal, scripts & packages manager guy. So, how do I update my desktop ?
+I’m an update junkie. I like my system and my applications to be up to date. In the new mobile « App Store » centric approach to the world, it’s quite simple. But that word is too bland and centralized to please me. I’m more of a terminal, scripts & packages manager guy. So, how do I update my desktop?
 
 ## Update everything with a short command
 
-On GNU/Linux and macOS I rely on aliases for this kind of stuff. My Shell is `zsh`, but it works to with `bash`, `fish` or whatever. And the most important alias to me is `up`. It’s the one I use to update all the things and launch actions I need to do on a regular basis to feel nice.
+On GNU/Linux and macOS I rely on aliases for this kind of stuff. My Shell is `zsh`, but it works too with `bash`, `fish` or whatever. And the most important alias to me is `up`. It’s the one I use to update all the things and launch actions I need to do on a regular basis to feel nice.
 
 To do the same, edit your `~/.zshrc` (or the file used by your Shell) and add:
 
@@ -55,15 +55,15 @@ up() {
 }
 ```
 
-As you can see here, it’s on multiple lines and declared as a function to be more readable. You can add variables, other functions and more complex Shell stuff tp such aliases. For example add a function call to `git pull` some repositories or update [your mirrors](/posts/2023-12-github-gitlab-framagit/) (yes, I do that).
+As you can see here, it’s on multiple lines and declared as a function to be more readable. You can add variables, other functions and more complex Shell stuff to such aliases. For example add a function call to `git pull` some repositories or update [your mirrors](/posts/2023-12-github-gitlab-framagit/) (yes, I do that).
 
-You can then run `up` on a regular basis through CRON or other mechanisms, and log outputs to check if anything went wrong. I prefer to launch it manually when I want to be sure everything is up to date (sometimes more than once© a day)… but I have a compulsive disorder about that.
+You can then run `up` on a regular basis through CRON or other mechanisms, and log outputs to check if anything went wrong. I prefer to launch it manually when I want to be sure everything is up to date (sometimes more than once a day)… but I have a compulsive disorder about that.
 
 ## Aliases are the spice of life
 
-Of course, you can improve your life by multiplying the aliases you use, making commands shorter and smarter. Creating `dotfiles` and sharing them. But it's another story, I’ll cover that in a futre blog post.
+Of course, you can improve your life by multiplying the aliases you use, making commands shorter and smarter. Creating `dotfiles` and sharing them. But it's another story, I’ll cover that in a future blog post.
 
-Nonetheless, here are some of my favorite aliases. And my personal advice: ask ChaGPT for new ideas, it’s good at this game. And it’s an interesting way to benchmark developers focused LLM 😏
+Nonetheless, here are some of my favorite aliases. And my personal advice: ask ChatGPT for new ideas, it’s good at this game. And it’s an interesting way to benchmark developer-focused LLMs 😏
 
 ```bash
 # One letter is enough

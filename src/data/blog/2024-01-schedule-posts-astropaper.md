@@ -42,17 +42,17 @@ The full commit is [here](https://github.com/davlgd/labs/commit/99d0bd98c750f62d
 
 Now, when the blog is built, scheduled content is created but not displayed anywhere. You must know the URL to access it. I didn't want to go any further because this allows me to check that everything is ok, share with some friends ahead of time and schedule posts on social networks.
 
-When it's time to publish, I just have to ask for a rebuild of my application on Clever Cloud, and two minutes later, it's done. It's why `scheduledPostMargin`is required: to build before release time.
+When it's time to publish, I just have to ask for a rebuild of my application on Clever Cloud, and two minutes later, it's done. It's why `scheduledPostMargin` is required: to build before release time.
 
 I also want to plan the restart of the application on a regular basis or at a specific date. Here I use [CRON](https://en.wikipedia.org/wiki/Cron). How to enable it will depend on your hosting platform. In Clever Cloud it's configured by [`clevercloud/cron.json`](https://developers.clever-cloud.com/doc/administrate/cron/).
 
-It can be defined to launch a rebuild every weekday at 7h42 or next January 21st at 13h37, for example:
+It can be defined to launch a rebuild every weekday at 7:42 or next January 21st at 13:37, for example:
 
 ```json
 ["42 7 * * 1-5 $ROOT/rebuild.sh", "37 13 21 1 * $ROOT/rebuild.sh"]
 ```
 
-There are few things to note here. First, the server time is UTC (France is UTC+1 or UTC+2). Second, `$ROOT` is not a variable as in a shell script. It's value that's replaced by the path to the application root when the crontab is built. Third, it's recommended to use a `login shell` script (starting with `#!/bin/bash -l`) to get access to the application's environment variables.
+There are a few things to note here. First, the server time is UTC (France is UTC+1 or UTC+2). Second, `$ROOT` is not a variable as in a shell script. It's a value that's replaced by the path to the application root when the crontab is built. Third, it's recommended to use a `login shell` script (starting with `#!/bin/bash -l`) to get access to the application's environment variables.
 
 This is the one I use (don't forget to `chmod +x` it):
 
@@ -70,4 +70,4 @@ CLEVER_SECRET: account secret
 CC_OVERRIDE_BUILDCACHE: /dist:/clevercloud/cron.json:/rebuild.sh
 ```
 
-Thus, `cron.json` and `rebuild.sh` will be present if the application is restarted from its cache. Thanks to `CLEVER_TOKEN` and `CLEVER_SECRET`, [`Clever Tools`](https://github.com/CleverCloud/clever-tools) can login and restart the application. If you need these values, just launch a `clever login`, you'll have to identify to obtain them in a browser.
+Thus, `cron.json` and `rebuild.sh` will be present if the application is restarted from its cache. Thanks to `CLEVER_TOKEN` and `CLEVER_SECRET`, [`Clever Tools`](https://github.com/CleverCloud/clever-tools) can login and restart the application. If you need these values, just launch a `clever login`, you'll have to authenticate to obtain them in a browser.

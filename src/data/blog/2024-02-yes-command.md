@@ -15,7 +15,7 @@ Whether you are running GNU/Linux, macOS or even one of the BSD derivatives, you
 
 It comes with many tools. You probably use some of them on a daily basis, like `ls`, `cd`, `cp`, `mv`, `rm`, `mkdir`, etc. But there are many more, and some you may not be familiar with. A good example is the [`yes`](https://linux.die.net/man/1/yes) command.
 
-It outputs a string with a line break repeatedly until killed. It was conceived to developers' need to automate applications execution, while some of them didn't always offer a flag to prevent user interaction.
+It outputs a string with a line break repeatedly until killed. It was conceived to address developers' need to automate application execution, since some applications didn't always offer a flag to prevent user interaction.
 
 It's therefore a kind of `repeat` command, you can use this way:
 

@@ -15,7 +15,7 @@ Those who follow me on social networks or work with me know how much I love [V](
 
 ## Have you ever heard of V?
 
-I won't try to convince you how great it is, I don't need to. Just give it a try, you'll find out by yourself. [The GitHub repository](https://vlang.io/) contains [documentation](https://github.com/vlang/v/blob/master/doc/docs.md), [examples](https://github.com/vlang/v/tree/master/examples), how [to make scripts](https://github.com/vlang/v/blob/master/doc/docs.md#cross-platform-shell-scripts-in-v), ressources about [vlib](https://github.com/vlang/v/tree/master/vlib). You'll find more about vpm packages [here](https://vpm.vlang.io/), the stdlib reference [there](https://modules.vlang.io/).
+I won't try to convince you how great it is, I don't need to. Just give it a try, you'll find out by yourself. [The GitHub repository](https://vlang.io/) contains [documentation](https://github.com/vlang/v/blob/master/doc/docs.md), [examples](https://github.com/vlang/v/tree/master/examples), how [to make scripts](https://github.com/vlang/v/blob/master/doc/docs.md#cross-platform-shell-scripts-in-v), resources about [vlib](https://github.com/vlang/v/tree/master/vlib). You'll find more about vpm packages [here](https://vpm.vlang.io/), the stdlib reference [there](https://modules.vlang.io/).
 
 An [online playground](https://play.vlang.io/) is available. It's easy to install and to run on any platform. Just `git clone` and compile (or download [pre-built binaries](https://github.com/vlang/v/releases)):
 
@@ -34,11 +34,11 @@ v up
 
 ## vweb evolves, why not host my blog with it?
 
-One of the greatest power of V it's how it's "battery included". It's not only a language, it's a complete ecosystem. So it includes a way to generate and serve web pages as a binary: vweb, [recently overhauled](https://twitter.com/v_language/status/1755135917956706487).
+One of the greatest powers of V is how it's "batteries included". It's not only a language, it's a complete ecosystem. So it includes a way to generate and serve web pages as a binary: vweb, [recently overhauled](https://twitter.com/v_language/status/1755135917956706487).
 
-It was thought [to dynamically render a website](https://song.cleverapps.io/), but also to serve static assets: css, images, documents, etc. But when I tried it I asked myself: "_Why not to serve a complete static website?_". So I made somes tests.
+It was thought [to dynamically render a website](https://song.cleverapps.io/), but also to serve static assets: css, images, documents, etc. But when I tried it I asked myself: "_Why not serve a complete static website?_". So I made some tests.
 
-And there was a problem: if you didn't asked for a file, nothing was served. For example, if you asked for https://labs.davlgd.fr without ending it with `/index.html` you had a `404` response. It needed a small change, so I did it:
+And there was a problem: if you didn't ask for a file, nothing was served. For example, if you asked for https://labs.davlgd.fr without ending it with `/index.html` you had a `404` response. It needed a small change, so I did it:
 
 ```v
 mut asked_path := url.path
@@ -58,13 +58,13 @@ if asked_path.ends_with('/') {
 static_file := app.static_files[asked_path] or { return false }
 ```
 
-What did this changed ? In the `serve_if_static` function of `vweb.v`, it creates the `asked_path` mutable variable, based on the `url.path`. If it ends with a `/`, it's a "folder", so I check if it contains an `index.html` or `index.htm` file. If yes, it's served. I also add a `/` at the end of the path when there's not and it doesn't contains a `.`, to handle more cases.
+What did this change? In the `serve_if_static` function of `vweb.v`, it creates the `asked_path` mutable variable, based on the `url.path`. If it ends with a `/`, it's a "folder", so I check if it contains an `index.html` or `index.htm` file. If yes, it's served. I also add a `/` at the end of the path when there's not and it doesn't contain a `.`, to handle more cases.
 
 ## It's OSS, contribute!
 
-I tried theses changes locally and it worked. I was happy with the result, with how I achieved it, and started to use this modified version of V to build the static web server hosting this blog.
+I tried these changes locally and it worked. I was happy with the result, with how I achieved it, and started to use this modified version of V to build the static web server hosting this blog.
 
-But I didn't want to keep it for me, or wait for such a feature to be included officially in the language. So I added a test and made [a pull request](https://github.com/vlang/v/pull/20784). Here comes another powerfull part in the V ecosystem: it's easy to contribute, reviewers are very reactive and open to newcomers.
+But I didn't want to keep it for me, or wait for such a feature to be included officially in the language. So I added a test and made [a pull request](https://github.com/vlang/v/pull/20784). Here comes another powerful part in the V ecosystem: it's easy to contribute, reviewers are very reactive and open to newcomers.
 
 Quickly, it was reviewed and merged, I added some documentation and [an example](https://github.com/vlang/v/tree/master/examples/vweb/static_website). Now, anyone can use vweb to serve static websites.
 
@@ -97,6 +97,6 @@ println("Server is started, serving '${folder}' folder")
 vweb.run[App, Context](mut app, port)
 ```
 
-The complete code is available [here](https://github.com/davlgd/tws/blob/main/src/tws.v). It's really basic, but I'll try to make it better over time. The main point for me is that it only uses about 1 MB of storage once compiled, it's multiplaform, and able to serve my static website with no effort and a small footprint from anywhere.
+The complete code is available [here](https://github.com/davlgd/tws/blob/main/src/tws.v). It's really basic, but I'll try to make it better over time. The main point for me is that it only uses about 1 MB of storage once compiled, it's multiplatform, and able to serve my static website with no effort and a small footprint from anywhere.
 
 [I distribute tws as binaries](https://github.com/davlgd/tws/releases/) for Linux, macOS (ARM or amd64) and Windows. Give it a try, fork it and make it better. You'll see, it's fun! 😉

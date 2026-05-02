@@ -14,7 +14,7 @@ In a previous article, I talked about [what's a (minimal) Linux](/posts/2024-05-
 
 Rules are defined in the [Filesystem Hierarchy Standard (FHS)](https://refspecs.linuxfoundation.org/fhs.shtml). That's what initramfs and BusyBox provided in a very basic way. But a Linux distribution brings more: lots of tools, libraries, config files, etc. Except from its prebuilt kernel, it's what makes it different from another.
 
-Thus, you can test any distribution on your local machine, without installing it, without any virtualization stack. You just need to get its file system and use it with your own kernel. There is a tool for that: [chroot](https://linux.die.net/man/1/chroot). It's a command included since the 7th Edition of Unix (1979).
+Thus, you can test any distribution on your local machine, without installing it, without any virtualization stack. You just need to get its file system and use it with your own kernel. There is a tool for that: [chroot](https://linux.die.net/man/1/chroot). The underlying system call was introduced in the 7th Edition of Unix (1979); the standalone command followed shortly after in BSD.
 
 ## I am chroot
 

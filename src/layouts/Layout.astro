@@ -3,7 +3,7 @@ import { ClientRouter } from "astro:transitions";
 import { SITE } from "@/config";
 import "@/styles/global.css";
 
-export interface Props {
+type Props = {
   title?: string;
   author?: string;
   profile?: string;
@@ -13,7 +13,7 @@ export interface Props {
   pubDatetime?: Date;
   modDatetime?: Date | null;
   scrollSmooth?: boolean;
-}
+};
 
 const {
   title = SITE.title,

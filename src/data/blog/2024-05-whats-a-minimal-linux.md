@@ -16,7 +16,7 @@ These days, it's everywhere: in the Cloud, its servers, but also phones, tablets
 
 ## Let's talk about Linux
 
-But when you discuss it with people, even confirmed users, you realize there are still a lot of questions and misconceptions about Linux. What is it, its kernel, why is there people yelling at you when you don't write GNU/Linux, what makes a distribution different from another, etc.
+But when you discuss it with people, even confirmed users, you realize there are still a lot of questions and misconceptions about Linux. What is it, its kernel, why are there people yelling at you when you don't write GNU/Linux, what makes a distribution different from another, etc.
 
 So, let's try to clarify things a bit with a blog post series and some practical stuff. It won't be that technical, but I hope it will help some to better understand Linux and its ecosystem, and why it's so precious.
 
@@ -28,7 +28,7 @@ As [stated by Wikipedia](https://en.wikipedia.org/wiki/Linux), Linux is not just
 
 I won't go into the details of [the history of Unix and Linux](https://www.youtube.com/watch?v=vjMZssWMweA), Wikipedia is far better than me for such things. But you got it: we use this name to talk about the kernel and operating systems (OS) based on it.
 
-In most situations, these OSes, or distributions, includes tools from [the GNU project](https://www.gnu.org/gnu/gnu.en.html). There are a lot, [almost 400!](https://www.gnu.org/manual/blurbs.html). All with the same [Free Software philosophy](https://www.gnu.org/philosophy/philosophy.en.html). It's why you should then talk about GNU/Linux.
+In most situations, these OSes, or distributions, include tools from [the GNU project](https://www.gnu.org/gnu/gnu.en.html). There are a lot, [almost 400!](https://www.gnu.org/manual/blurbs.html). All with the same [Free Software philosophy](https://www.gnu.org/philosophy/philosophy.en.html). It's why you should then talk about GNU/Linux.
 
 ## (Compile) the kernel
 
@@ -51,7 +51,7 @@ make defconfig
 make -j$(nproc)
 ```
 
-Wait some minutes and... it's done! Install it could be as easy as a `make install`. But many distributions prefers to package it or provides their own tools. Why? Because the hard part is the configure step. You never use kernel with its default settings: you fine tune it, add some features, remove others, etc. And it's not that easy to do it right. But try it!
+Wait some minutes and... it's done! Installing it could be as easy as a `make install`. But many distributions prefer to package it or provide their own tools. Why? Because the hard part is the configure step. You never use a kernel with its default settings: you fine tune it, add some features, remove others, etc. And it's not that easy to do it right. But try it!
 
 ```bash
 # If you want check and/or modify kernel configuration
@@ -203,7 +203,7 @@ Linux (none) 6.8.8 #1 SMP PREEMPT_DYNAMIC Wed May 1 14:42:21 CEST 2024 x86_64 GN
 You can now use some commands:
 
 ```bash
-# Get informations about CPU and memory
+# Get information about CPU and memory
 # It's UNIX, everything is a file
 cat /proc/cpuinfo
 cat /proc/meminfo

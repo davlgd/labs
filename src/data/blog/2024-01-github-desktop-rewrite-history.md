@@ -26,7 +26,7 @@ For some `git` actions [I prefer to use command line](2023-12-github-gitlab-fram
 
 ![Git: squash your commits!](/src/images/2024-01-git-squash.webp)
 
-## Squash you commits (but reorder them first)
+## Squash your commits (but reorder them first)
 
 Let's be clear: revising `git` history is usually a bad move, especially for teamwork because it breaks the dynamics of distributed projects. But it can be helpful in some cases or when you're dealing with your own branch. In fact, I almost do this only for one thing: keep my `git` history clean.
 
@@ -36,9 +36,9 @@ It could be done with an interactive rebase (`git rebase -i <commit_hash>`), but
 
 ![GitHub Desktop Rewriting git history](/src/images/2024-01-github-desktop-capture.webp)
 
-If you avoid modifying the same files in multiple commits, you can reorganize and merge them at your convenience. If you already pushed before, you'll certainly need to `git push --force` on the remote (if your allowed to).
+If you avoid modifying the same files in multiple commits, you can reorganize and merge them at your convenience. If you already pushed before, you'll certainly need to `git push --force` on the remote (if you're allowed to).
 
-And you do you have some `git` CLI/GUI tricks? Let me know!
+And do you have some `git` CLI/GUI tricks? Let me know!
 
 ---
 

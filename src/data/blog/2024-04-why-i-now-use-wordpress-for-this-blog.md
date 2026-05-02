@@ -1,7 +1,7 @@
 ---
 author: davlgd
 pubDatetime: 2024-04-02T04:02:01Z
-title: Why I not use WordPress for this blog
+title: Why I do not use WordPress for this blog
 description: Better keep it simple
 tags:
   - Blog

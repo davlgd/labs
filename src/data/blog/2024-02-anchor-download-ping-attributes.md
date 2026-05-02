@@ -1,7 +1,7 @@
 ---
 author: davlgd
 pubDatetime: 2024-02-26T13:37:00Z
-title: "Anchor (<a>) element: do you now its download and ping attributes?"
+title: "Anchor (<a>) element: do you know its download and ping attributes?"
 description: "I love to still have such n00b moments"
 tags:
   - HTML
@@ -11,7 +11,7 @@ tags:
 ogImage: /src/assets/images/2024-02-anchor-a-html.webp
 ---
 
-One thing I like about technology, is how I can discover new things every day, even about the most basic tools. For example, last week I read a tweet about the `<a>` element and its `download` attribute. Although I create web pages since 90s, I didn't know about it. So, I made some tests.
+One thing I like about technology, is how I can discover new things every day, even about the most basic tools. For example, last week I read a tweet about the `<a>` element and its `download` attribute. Although I've been creating web pages since the 90s, I didn't know about it. So, I made some tests.
 
 ## Download a file or open it: let's decide
 
@@ -69,4 +69,4 @@ sec-ch-ua-platform: "macOS"
 
 Thus, it's often seen as a privacy issue and not widely used. But it's good to know it exists and to look for ways to avoid it.
 
-If you want to learn more or experiment with the`ping` attribute, I've published a [GitHub repository](https://github.com/davlgd/anchor-download-ping-demo) containing a demo website, a web server to host it and another to log the `ping` requests in a file. Have fun with it! 😉
+If you want to learn more or experiment with the `ping` attribute, I've published a [GitHub repository](https://github.com/davlgd/anchor-download-ping-demo) containing a demo website, a web server to host it and another to log the `ping` requests in a file. Have fun with it! 😉

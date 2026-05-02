@@ -15,10 +15,10 @@ import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
 
-export interface Props {
+type Props = {
   post: CollectionEntry<"blog">;
   posts: CollectionEntry<"blog">[];
-}
+};
 
 const { post, posts } = Astro.props;
 
@@ -87,10 +87,7 @@ const nextPost =
   <BackButton />
   <main
     id="main-content"
-    class:list={[
-      "mx-auto w-full max-w-app px-4 pb-12",
-      { "mt-8": !SITE.showBackButton },
-    ]}
+    class:list={["app-layout pb-12", { "mt-8": !SITE.showBackButton }]}
     data-pagefind-body
   >
     <img src={ogImage} alt={title} class="mb-4 rounded-lg" />
@@ -102,12 +99,18 @@ const nextPost =
     </h1>
     <div class="my-2 flex items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
-      <span aria-hidden="true" class="max-sm:hidden">|</span>
+      <span
+        aria-hidden="true"
+        class:list={[
+          "max-sm:hidden",
+          { hidden: !SITE.editPost.enabled || hideEditPost },
+        ]}>|</span
+      >
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
     <article
       id="article"
-      class="app-prose mx-auto mt-8 max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
+      class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
     >
       <Content />
     </article>
@@ -116,8 +119,8 @@ const nextPost =
 
     <EditPost class="sm:hidden" {hideEditPost} {post} />
 
-    <ul class="mt-4 mb-8 sm:my-8">
-      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} />)}
+    <ul class="mt-4 mb-8 flex flex-wrap gap-4 sm:my-8">
+      {tags.map(tag => <Tag tag={slugifyStr(tag)} tagName={tag} size="sm" />)}
     </ul>
 
     <BackToTopButton />
@@ -235,9 +238,18 @@ const nextPost =
       const wrapper = document.createElement("div");
       wrapper.style.position = "relative";
 
+      // Check if --file-name-offset custom property exists
+      const computedStyle = getComputedStyle(codeBlock);
+      const hasFileNameOffset =
+        computedStyle.getPropertyValue("--file-name-offset").trim() !== "";
+
+      // Determine the top positioning class
+      const topClass = hasFileNameOffset
+        ? "top-(--file-name-offset)"
+        : "-top-3";
+
       const copyButton = document.createElement("button");
-      copyButton.className =
-        "copy-code absolute end-3 top-3 rounded bg-muted/80 px-2 py-1 text-xs leading-4 text-foreground font-medium";
+      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-muted border border-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);

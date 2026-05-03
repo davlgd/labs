@@ -1,0 +1,9 @@
+{{- if eq .Level 1 -}}
+<h1>{{ .Text | safeHTML }}</h1>
+{{- else if eq .Level 2 -}}
+<h2 id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }}<a class="anchor mono" href="#{{ .Anchor | safeURL }}" aria-label="anchor">#</a></h2>
+{{- else if eq .Level 3 -}}
+<h3 id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }}</h3>
+{{- else -}}
+<h{{ .Level }} id="{{ .Anchor | safeURL }}">{{ .Text | safeHTML }}</h{{ .Level }}>
+{{- end -}}

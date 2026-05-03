@@ -1,8 +1,0 @@
-root = "dist"
-server-compression-static = true
-cors-allow-origins = "https://labs.davlgd.fr"
-
-[[advanced.headers]]
-source = "*"
-[advanced.headers.headers]
-server = "davlgd web server"

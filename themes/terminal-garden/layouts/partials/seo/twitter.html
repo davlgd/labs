@@ -1,0 +1,20 @@
+{{- $title := cond .IsHome site.Title .Title -}}
+{{- $desc := .Description -}}
+{{- if not $desc -}}
+  {{- if and .IsPage .Summary -}}{{- $desc = .Summary | plainify | truncate 200 -}}
+  {{- else -}}{{- $desc = site.Params.tagline -}}{{- end -}}
+{{- end -}}
+{{- $img := .Params.ogImage -}}
+{{- if not $img -}}{{- with .Params.images -}}{{- $img = index . 0 -}}{{- end -}}{{- end -}}
+{{- if not $img -}}{{- $img = site.Params.defaultOgImage -}}{{- end -}}
+<meta name="twitter:card" content="{{ if $img }}summary_large_image{{ else }}summary{{ end }}">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{- with $img }}
+<meta name="twitter:image" content="{{ . | absURL }}">
+<meta name="twitter:image:alt" content="{{ $title }}">
+{{- end }}
+{{- with site.Params.author.twitter }}
+<meta name="twitter:site" content="{{ . }}">
+<meta name="twitter:creator" content="{{ . }}">
+{{- end }}

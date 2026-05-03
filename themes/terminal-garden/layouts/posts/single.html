@@ -1,0 +1,57 @@
+{{ define "main" }}
+{{- $url := .Permalink -}}
+{{- $title := .Title -}}
+<div class="page">
+  <div class="article-frame">
+    <div class="toc-stack">
+      <aside class="toc">
+        <div class="toc-head">contents</div>
+        {{- with .TableOfContents }}{{ . }}{{ else }}<div class="mono" style="color: var(--dim); font-size: 11px">no headings</div>{{ end }}
+      </aside>
+      <aside class="rail-card">
+        <div class="h">meta</div>
+        <div class="row"><span class="k">date</span><span class="v">{{ .Date.Format "Jan 2, 2006" }}</span></div>
+        <div class="row"><span class="k">time</span><span class="v">{{ .Date.Format "15:04 MST" }}</span></div>
+        <div class="row"><span class="k">read</span><span class="v">{{ .ReadingTime }} min</span></div>
+        <div class="row"><span class="k">words</span><span class="v">{{ .WordCount }}</span></div>
+        <div class="row"><span class="k">tags</span><span class="v accent">{{ len .Params.tags }}</span></div>
+        {{- with site.Params.editBaseUrl }}
+        <a class="rail-link mono" href="{{ . }}{{ $.File.Path }}" target="_blank" rel="noopener">▸ edit on github</a>
+        {{- end }}
+      </aside>
+    </div>
+
+    <article class="article">
+      <h1>{{ .Title }}</h1>
+      {{- with .Description }}<p class="article-lede reveal">{{ . }}</p>{{ end }}
+      {{ .Content }}
+
+      <div class="share-bar">
+        <span class="share-label mono">share ▸</span>
+        <a class="share-link" href="https://bsky.app/intent/compose?text={{ printf "%s %s" $title $url | urlquery }}" target="_blank" rel="noopener">↗ bluesky</a>
+        <a class="share-link" href="https://x.com/intent/post?url={{ $url | urlquery }}&text={{ $title | urlquery }}" target="_blank" rel="noopener">↗ x</a>
+        <a class="share-link" href="mailto:?subject={{ $title | urlquery }}&body={{ $url | urlquery }}">↗ email</a>
+        <a class="share-link" data-copy="{{ $url }}" href="#" role="button">↗ copy link</a>
+        {{- with site.Params.editBaseUrl }}
+        <a class="share-link" href="{{ . }}{{ $.File.Path }}" target="_blank" rel="noopener">↗ raw .md</a>
+        {{- end }}
+      </div>
+
+      <div class="prev-next">
+        {{- with .PrevInSection }}
+        <a href="{{ .RelPermalink }}" class="pn-card">
+          <div class="mono pn-dir">← cd ../prev</div>
+          <div class="pn-title">{{ .Title }}</div>
+        </a>
+        {{- else }}<span></span>{{ end }}
+        {{- with .NextInSection }}
+        <a href="{{ .RelPermalink }}" class="pn-card pn-next">
+          <div class="mono pn-dir">cd ../next →</div>
+          <div class="pn-title">{{ .Title }}</div>
+        </a>
+        {{- else }}<span></span>{{ end }}
+      </div>
+    </article>
+  </div>
+</div>
+{{ end }}

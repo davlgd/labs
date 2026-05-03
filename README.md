@@ -1,113 +1,97 @@
 # davlgd tech blog
 
-This blog is based on [`AstroPaper`](https://github.com/satnaing/astro-paper) theme, built & hosted as a static website on [Clever Cloud](https://www.clever-cloud.com).
+> **Requires [Hugo Extended](https://gohugo.io/installation/)** — see the official installation guide for the methods available on your platform.
 
-## Create your own AstroPaper blog
+This blog is a custom-designed [Hugo](https://gohugo.io) site running my own [`terminal-garden`](themes/terminal-garden/) theme — a dark-first, terminal-flavored design with typewriter hero, sticky TOC, command palette (`⌘K` / `/`), contributions heatmap and live tag filter. Built and hosted as a static website on [Clever Cloud](https://www.clever-cloud.com).
 
-You'll need `Node.js` to init such a project. It will create you a new folder and, if asked, a local git repository:
+## Stack
 
-```node
-npm create astro@latest -- --template satnaing/astro-paper
-or
-yarn create astro --template satnaing/astro-paper
+- **Generator**: Hugo Extended — single binary, sub-second builds, no Node.js
+- **Theme**: `terminal-garden` (lives in `themes/terminal-garden/`)
+- **Content**: Markdown in `content/posts/` with `pubDatetime` frontmatter
+- **Projects page**: data fetched from the GitHub API at build time
+- **No JS framework**, no tracking, no analytics
+
+## Local development
+
+```bash
+hugo server -D    # dev server with live reload
+hugo --minify     # build for production
 ```
 
-You can use some options if needed:
+The site is then available at `http://localhost:1313`.
 
-```
-       --template <name>  Specify your template.
---install / --no-install  Install dependencies (or not).
-        --git / --no-git  Initialize git repo (or not).
-              --yes (-y)  Skip all prompts by accepting defaults.
-               --no (-n)  Skip all prompts by declining defaults.
-               --dry-run  Walk through steps without executing.
-          --skip-houston  Skip Houston animation.
-                   --ref  Choose astro branch (default: latest).
-                 --fancy  Enable full Unicode support for Windows.
-   --typescript <option>  TypeScript option: strict | strictest | relaxed.
-```
+## Configuration
 
-For example for this blog I used:
+Site-wide config lives in [`hugo.yaml`](hugo.yaml):
 
-```node
-yarn create astro --template satnaing/astro-paper labs --no-install --git --typescript relaxed -y
-```
+- `params.handle`, `params.tagline`, `params.about` — site identity
+- `params.socials` — links rendered in the footer
+- `params.author` — name + Twitter/Bluesky handles for SEO meta
+- `params.githubUser` / `params.projectsTopic` — projects page data source
+- `params.defaultOgImage` — fallback OpenGraph image
+- `params.themeColor` — accent color (also used by mobile browsers)
 
-Note: it will work the same with most of Astro themes.
+The `terminal-garden` theme reads everything from `params.*`; nothing is hardcoded.
 
-## Configure blog, edit content
+## Host as a static website on Clever Cloud
 
-To configure and use this blog/theme, you can:
-
-- Change parameters in [src/config.ts](src/config.ts)
-- Edit markdown pages/posts in [src/content/](src/content/)
-- Edit index file content in [src/pages/index.astro](src/pages/index.astro)
-
-You can go further thanks to [Astro documentation](https://docs.astro.build/en/core-concepts/project-structure/) and [AstroPaper documentation](https://github.com/satnaing/astro-paper?tab=readme-ov-file#-documentation).
-
-To check the generated website, launch `npm run start`. It will be available at `https://localhost:4321`.
-
-## Host as a static website on Clever Cloud with Tiniest vWeb Server (tws)
-
-You'll need a Clever Cloud account to access [the Console](https://console.clever-cloud.com) or to use the CLI, [Clever Tools](https://github.com/CleverCloud/clever-tools):
+You'll need a Clever Cloud account to access [the Console](https://console.clever-cloud.com) or use the CLI, [Clever Tools](https://github.com/CleverCloud/clever-tools):
 
 ```bash
 npm i -g clever-tools
 clever login
 ```
 
-First, create a Node.js application, the CLI command is:
+Create a static application (Hugo is [natively supported](https://www.clever.cloud/developers/doc/applications/static/)):
 
 ```bash
-clever create -t node
+clever create -t static
 ```
 
-As a PaaS platform, a deployment on Clever Cloud starts with a build phase, where the static website will be generated. I host it through [Tiniest vWeb Server](https://github.com/davlgd/tws), downloaded and setup via the `get_deps.sh` script. You can use any of your choice. HTTPS acces is automatically configured (thanks to the [Sōzu load balancer](https://github.com/sozu-proxy/sozu)).
-
-No external runner such as GitHub Action is needed. Configuring the build phase is as easy as:
+Clever Cloud detects `hugo.yaml` and builds the site for you — no scale/env config needed. Commit your changes, then deploy:
 
 ```bash
-clever scale --flavor pico    # A tiny instance is enough for static blog
-clever scale --build-flavor M # A bigger instance to quickly build the website
-
-clever env set CC_WEBROOT "/dist"
-clever env set CC_OVERRIDE_BUILDCACHE "/tws-linux-x86_64:/dist:/package.json"
-clever env set CC_PRE_BUILD_HOOK "./get_deps.sh"
-clever env set CC_POST_BUILD_HOOK "npm run build"
-clever env set CC_RUN_COMMAND "./tws-linux-x86_64 dist"
+git add -A && git commit -m "your commit message"
+clever deploy
 ```
-
-You can also set this through [the Console](https://console.clever-cloud.com) or import environment variables of the `.env` file of this repository:
-
-```bash
-clever env import < .env
-```
-
-To change the Node.js version (latest `21.x` in this example), edit this in the `package.json` file:
-
-```json
-"engines": {
-  "node": "21"
-}
-```
-
-Then, just `git push` the source code:
-
-```bash
-git add . && git commit -m "Deploy my static website" && clever deploy
-clever open
-```
-
-You now access your website through a generic domain (`xxx.cleverapps.io`). You can add the one of your choice (you'll need to change DNS configuration) and set it as the default:
-
-```bash
-clever domain
-clever domain add your.domain.tld
-clever domain favourite set your.domain.tld
-```
-
-If you need to regularly rebuild the blog (for scheduled posts for example), follow [this tutorial](http://labs.davlgd.fr/posts/2024-01-schedule-posts-astropaper/).
 
 ### From GitHub
 
-You can link your GitHub account to your Clever Cloud account for an easier login. It will also enable automatic deployment after a push on a specific branch (it's how this blog is published).
+Linking your GitHub account to Clever Cloud enables automatic deployment after each push on a specific branch (this is how this blog is published).
+
+## Repository layout
+
+```
+.
+├── archetypes/             # default frontmatter for `hugo new`
+├── content/
+│   ├── about.md
+│   ├── projects.md         # data-driven from GitHub API
+│   ├── search.md
+│   └── posts/
+│       └── *.md
+├── static/
+│   ├── images/             # post images served at /images/
+│   └── og-default.png      # OpenGraph fallback
+├── themes/terminal-garden/ # the custom theme
+├── hugo.yaml               # site config
+└── README.md
+```
+
+`legacy/` holds the previous Astro version of the blog, kept for reference.
+
+## Theme: terminal-garden
+
+A self-contained Hugo theme built specifically for this blog. Highlights:
+
+- Dark/light theme toggle with `localStorage` persistence (no flash on load)
+- Command palette (`⌘K` / `/`) and vim-style nav (`g h`, `g l`, `g t`, `g p`, `g a`)
+- Reading-progress bar on articles, sticky TOC, animated reveal on scroll
+- GitHub-contributions-style heatmap (rendered server-side from posts data)
+- Live tag filter on the homepage with stat recompute
+- Code blocks with copy button, language label, Chroma-based syntax highlighting (palette retuned for terminal aesthetics)
+- Glitch-on-hover for filenames in the post list
+- Full SEO: canonical, OpenGraph, Twitter Cards, JSON-LD (`BlogPosting` + `WebSite` with `SearchAction`)
+- Hugo Pipes: CSS/JS minified + fingerprinted with Subresource Integrity
+- A11y: skip-to-content link, semantic `<main>`, `aria-label` on icon buttons

@@ -1,0 +1,4 @@
+<figure class="article-figure reveal">
+<img src="{{ .Destination | safeURL }}" alt="{{ .Text | plainify }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy">
+{{- with .Title }}<figcaption>{{ . }}</figcaption>{{- else }}{{ with .Text }}{{ if . }}<figcaption>{{ . | plainify }}</figcaption>{{ end }}{{ end }}{{ end }}
+</figure>

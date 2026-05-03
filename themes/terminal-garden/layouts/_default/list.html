@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="page">
+  <div class="pane">
+    <div class="files-head">
+      <span class="h-num">#</span>
+      <span></span>
+      <span>name</span>
+      <span class="h-tags">tags</span>
+      <span class="h-date">modified</span>
+      <span>read</span>
+    </div>
+    {{- $posts := .Pages.ByDate.Reverse -}}
+    {{- range $i, $p := $posts }}
+    <a class="file-row" href="{{ $p.RelPermalink }}" data-tags="{{ delimit $p.Params.tags "," }}" data-read="{{ $p.ReadingTime }}">
+      <span class="num">{{ printf "%02d" (sub (len $posts) $i) }}</span>
+      <span class="icon">▸</span>
+      <span class="name">
+        <span class="glitch" data-text="{{ $p.File.BaseFileName }}">{{ $p.File.BaseFileName }}</span>
+        <span class="title">{{ $p.Title }}</span>
+      </span>
+      <span class="tags-cell">{{ range $p.Params.tags }}#{{ lower . }} {{ end }}</span>
+      <span class="date-cell">{{ $p.Date.Format "Jan 2, 2006" }}</span>
+      <span class="size-cell">{{ $p.ReadingTime }}m</span>
+    </a>
+    {{- end }}
+  </div>
+</div>
+{{ end }}

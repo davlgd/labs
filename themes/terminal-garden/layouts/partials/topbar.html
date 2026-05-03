@@ -1,0 +1,33 @@
+{{- $route := "" -}}
+{{- if .IsHome -}}{{ $route = "home" -}}
+{{- else if eq .Section "posts" -}}{{ if not .IsSection }}{{ $route = printf "posts/%s.md" .File.BaseFileName }}{{ else }}{{ $route = "posts.md" }}{{ end }}
+{{- else if .IsPage -}}{{ $route = printf "%s.md" .File.BaseFileName -}}
+{{- else if .IsSection -}}{{ $route = printf "%s.md" .Section -}}
+{{- end -}}
+<div class="topbar">
+  <a class="brand" href="{{ "/" | relURL }}">
+    <span class="glyph">d</span>
+    <span>{{ site.Params.handle | default "davlgd" }}</span>
+    <span class="path">
+      <span class="sep">~/</span>blog{{ if $route }}<span class="sep">/</span>{{ $route }}{{ end }}
+    </span>
+    <span class="cursor"></span>
+  </a>
+  <div></div>
+  <button class="kbar-trigger" type="button" aria-label="Open command palette">
+    <span style="color: var(--accent)">⌕</span>
+    <span class="placeholder">Jump to anything…</span>
+    <kbd>⌘K</kbd>
+  </button>
+  <nav class="nav">
+    <a class="{{ if eq .Section "posts" }}active{{ end }}" href="{{ "/posts/" | relURL }}">ls</a>
+    <a class="{{ if or (eq .Section "tags") (in (slice "tags") .Section) }}active{{ end }}" href="{{ "/tags/" | relURL }}">tags</a>
+    <a class="{{ if eq .Section "projects" }}active{{ end }}" href="{{ "/projects/" | relURL }}">projects</a>
+    {{- with site.Params.whoamiUrl }}
+    <a href="{{ . }}" target="_blank" rel="noopener" title="whoami">whoami ↗</a>
+    {{- else }}
+    <a class="{{ if eq .Section "about" }}active{{ end }}" href="{{ "/about/" | relURL }}">whoami</a>
+    {{- end }}
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">☀</button>
+  </nav>
+</div>

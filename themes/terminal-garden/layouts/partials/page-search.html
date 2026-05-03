@@ -1,0 +1,21 @@
+{{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
+<div class="page search-page">
+  <div class="search-shell">
+    <span class="prompt">grep -r</span>
+    <input id="searchInput" class="search-input" type="search" placeholder='"pattern" ./posts/' autocomplete="off">
+  </div>
+  <div class="search-meta" id="searchMeta">→ Type a pattern. Searches titles, tags, and excerpts.</div>
+  <div class="pane" id="searchResults">
+    {{- range $posts }}
+    {{- $lt := slice -}}{{- range .Params.tags }}{{ $lt = $lt | append (lower .) }}{{ end -}}
+    <a class="file-row" href="{{ .RelPermalink }}" data-tags="{{ delimit $lt "," }}" data-excerpt="{{ .Description | default (.Summary | plainify | truncate 200) }}">
+      <span class="num"></span>
+      <span class="icon">▸</span>
+      <span class="name"><span>{{ .File.BaseFileName }}</span><span class="title">{{ .Title }}</span></span>
+      <span class="tags-cell">{{ range $lt }}#{{ . }} {{ end }}</span>
+      <span class="date-cell">{{ .Date.Format "Jan 2, 2006" }}</span>
+      <span class="size-cell">{{ .ReadingTime }}m</span>
+    </a>
+    {{- end }}
+  </div>
+</div>

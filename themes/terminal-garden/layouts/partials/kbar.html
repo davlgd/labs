@@ -1,0 +1,43 @@
+{{- $posts := (where site.RegularPages "Section" "posts").ByDate.Reverse -}}
+<div class="kbar-overlay" id="kbarOverlay" hidden>
+  <div class="kbar" role="dialog" aria-label="Command palette">
+    <div class="kbar-search">
+      <span class="prompt">⌕</span>
+      <input id="kbarInput" type="text" placeholder="Type a command or search posts…" autocomplete="off">
+      <kbd>ESC</kbd>
+    </div>
+    <div class="kbar-list">
+      <div class="kbar-empty" id="kbarEmpty" hidden>No matches. Try another query.</div>
+      <div class="kbar-section-h">navigation</div>
+      <div class="kbar-item" data-search="home" data-url="{{ "/" | relURL }}">
+        <span class="icn">▸</span><span class="lbl">Home<span class="sub">/</span></span><span class="kbd">g h</span>
+      </div>
+      <div class="kbar-item" data-search="posts ls archive" data-url="{{ "/posts/" | relURL }}">
+        <span class="icn">≡</span><span class="lbl">Posts<span class="sub">ls</span></span><span class="kbd">g l</span>
+      </div>
+      <div class="kbar-item" data-search="tags topics" data-url="{{ "/tags/" | relURL }}">
+        <span class="icn">#</span><span class="lbl">Tags<span class="sub">all topics</span></span><span class="kbd">g t</span>
+      </div>
+      <div class="kbar-item" data-search="projects open source" data-url="{{ "/projects/" | relURL }}">
+        <span class="icn">◇</span><span class="lbl">Projects<span class="sub">open source</span></span><span class="kbd">g p</span>
+      </div>
+      <div class="kbar-item" data-search="about whoami" data-url="{{ "/about/" | relURL }}">
+        <span class="icn">✦</span><span class="lbl">About<span class="sub">whoami</span></span><span class="kbd">g a</span>
+      </div>
+      <div class="kbar-item" data-search="search grep" data-url="{{ "/search/" | relURL }}">
+        <span class="icn">⌕</span><span class="lbl">Search<span class="sub">grep -r</span></span><span class="kbd">/</span>
+      </div>
+      <div class="kbar-section-h">recent posts</div>
+      {{- range first 8 $posts }}
+      <div class="kbar-item" data-search="{{ .Title }} {{ delimit .Params.tags " " }}" data-url="{{ .RelPermalink }}">
+        <span class="icn">≡</span><span class="lbl">{{ .Title }}<span class="sub">{{ .Date.Format "Jan 2, 2006" }}</span></span>
+      </div>
+      {{- end }}
+    </div>
+    <div class="kbar-foot">
+      <span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> select</span>
+      <span><kbd>esc</kbd> close</span>
+    </div>
+  </div>
+</div>

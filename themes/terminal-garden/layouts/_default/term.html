@@ -1,0 +1,23 @@
+{{ define "main" }}
+{{- $term := .Data.Term -}}
+{{- $posts := .Pages.ByDate.Reverse -}}
+<div class="page tags-page">
+  {{ partial "tags-cloud.html" (dict "current" $term) }}
+  <div class="pane reveal">
+    <div class="pane-head">
+      <div class="title mono">$ ls posts/ | grep "#{{ lower $term }}"</div>
+      <span class="mono" style="color: var(--accent); font-size: 10px">{{ len $posts }} match{{ if ne (len $posts) 1 }}es{{ end }}</span>
+    </div>
+    {{- range $posts }}
+    <a class="file-row" href="{{ .RelPermalink }}">
+      <span class="num"></span>
+      <span class="icon">▸</span>
+      <span class="name"><span>{{ .File.BaseFileName }}</span><span class="title">{{ .Title }}</span></span>
+      <span class="tags-cell">{{ range .Params.tags }}#{{ lower . }} {{ end }}</span>
+      <span class="date-cell">{{ .Date.Format "Jan 2, 2006" }}</span>
+      <span class="size-cell">{{ .ReadingTime }}m</span>
+    </a>
+    {{- end }}
+  </div>
+</div>
+{{ end }}

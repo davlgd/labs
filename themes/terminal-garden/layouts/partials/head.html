@@ -1,0 +1,34 @@
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+
+{{ partial "seo/meta.html" . }}
+{{ partial "seo/opengraph.html" . }}
+{{ partial "seo/twitter.html" . }}
+{{ partial "seo/jsonld.html" . }}
+
+{{- $fonts := resources.Get "css/fonts.css" -}}
+{{- $main := resources.Get "css/style.css" -}}
+{{- $css := slice $fonts $main | resources.Concat "css/bundle.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="{{ "/fonts/jetbrains-mono-400.woff2" | relURL }}" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="{{ "/fonts/ibm-plex-sans-400.woff2" | relURL }}" crossorigin>
+
+{{- with site.Params.favicon }}
+<link rel="icon" href="{{ . | relURL }}">
+{{- end }}
+{{- range .AlternativeOutputFormats -}}
+<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Site.Title }}">
+{{- end }}
+<script>
+  (function(){try{var t=localStorage.getItem("blog-theme-tg2")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  window.__navMap = {
+    h: "{{ "/" | relURL }}",
+    l: "{{ "/posts/" | relURL }}",
+    t: "{{ "/tags/" | relURL }}",
+    p: "{{ "/projects/" | relURL }}",
+    a: "{{ "/about/" | relURL }}"
+  };
+</script>
+</head>

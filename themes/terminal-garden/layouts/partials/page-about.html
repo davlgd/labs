@@ -1,0 +1,16 @@
+<div class="page">
+  <div class="about">
+    <div class="reveal">
+      <h1>Hey, I'm <span class="accent-block">{{ site.Params.handle | default "davlgd" }}</span></h1>
+      {{ .Content }}
+    </div>
+    <div class="about-card reveal">
+      <div class="photo">portrait.jpg</div>
+      <div class="info">
+        {{- range $k, $v := site.Params.aboutCard }}
+        <div class="row"><span class="k">{{ $k }}</span><span class="v">{{ $v }}</span></div>
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</div>

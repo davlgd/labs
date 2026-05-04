@@ -1,0 +1,27 @@
+{% include "partials/_doc_open.html" %}
+<div class="page">
+  <div class="pane">
+    <div class="files-head">
+      <span class="h-num">#</span>
+      <span></span>
+      <span>name</span>
+      <span class="h-tags">tags</span>
+      <span class="h-date">modified</span>
+      <span>read</span>
+    </div>
+{% for p in page.pages %}
+    <a class="file-row" href="{{ p.relpermalink }}" data-tags="{{ p.tags | join(",") }}" data-read="{{ p.reading_time }}">
+      <span class="num">{{ loop.reverse_index | printf("%02d") }}</span>
+      <span class="icon">▸</span>
+      <span class="name">
+        <span class="glitch" data-text="{{ p.file.basename }}">{{ p.file.basename }}</span>
+        <span class="title">{{ p.title }}</span>
+      </span>
+      <span class="tags-cell">{% for t in p.tags %}#{{ t | lower }} {% endfor %}</span>
+      <span class="date-cell">{{ p.date | format_date("Jan 2, 2006") }}</span>
+      <span class="size-cell">{{ p.reading_time }}m</span>
+    </a>
+{% endfor %}
+  </div>
+</div>
+{% include "partials/_doc_close.html" %}

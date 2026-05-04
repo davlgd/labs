@@ -1,0 +1,30 @@
+{% with title = page.display_title | default(site.title) %}
+{% with desc = page.description | default(site.params.tagline) %}
+<meta property="og:type" content="{{ page.og_type }}">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ desc }}">
+<meta property="og:url" content="{{ page.permalink }}">
+<meta property="og:site_name" content="{{ site.title }}">
+{% if site.language %}
+<meta property="og:locale" content="{{ site.language }}">
+{% endif %}
+{% with img = page.og_image | default(site.params.defaultOgImage) %}
+{% if img %}
+<meta property="og:image" content="{{ img | absurl }}">
+<meta property="og:image:alt" content="{{ title }}">
+{% endif %}
+{% endwith %}
+{% if page.og_type == "article" %}
+<meta property="article:published_time" content="{{ page.date | format_date("2006-01-02T15:04:05Z07:00") }}">
+<meta property="article:modified_time" content="{{ page.lastmod | format_date("2006-01-02T15:04:05Z07:00") }}">
+{% if site.params.author is defined %}
+{% if site.params.author.name is defined %}
+<meta property="article:author" content="{{ site.params.author.name }}">
+{% endif %}
+{% endif %}
+{% for tag in page.tags %}
+<meta property="article:tag" content="{{ tag }}">
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% endwith %}

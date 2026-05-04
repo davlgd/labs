@@ -1,10 +1,9 @@
 # Legacy Astro project (kept locally for reference, not versioned)
 legacy/
 
-# Hugo build output
+# Build output and caches
 public/
-resources/_gen/
-.hugo_build.lock
+.cache/
 
 # OS / editor cruft
 .DS_Store

@@ -1,0 +1,5 @@
+{% if page.jsonld %}
+<script type="application/ld+json">
+{{ page.jsonld | safe }}
+</script>
+{% endif %}

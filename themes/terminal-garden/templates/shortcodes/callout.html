@@ -1,0 +1,4 @@
+<div class="callout{% if args.type == "warn" %} warn{% endif %}">
+  <div class="callout-head">{{ args.title | default("note") }}</div>
+  <div class="callout-body">{{ body | safe }}</div>
+</div>

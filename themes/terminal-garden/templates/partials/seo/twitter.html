@@ -1,0 +1,19 @@
+{% with title = page.display_title | default(site.title) %}
+{% with desc = page.description | default(site.params.tagline) %}
+{% with img = page.og_image | default(site.params.defaultOgImage) %}
+<meta name="twitter:card" content="{% if img %}summary_large_image{% else %}summary{% endif %}">
+<meta name="twitter:title" content="{{ title }}">
+<meta name="twitter:description" content="{{ desc }}">
+{% if img %}
+<meta name="twitter:image" content="{{ img | absurl }}">
+<meta name="twitter:image:alt" content="{{ title }}">
+{% endif %}
+{% if site.params.author is defined %}
+{% if site.params.author.twitter is defined %}
+<meta name="twitter:site" content="{{ site.params.author.twitter }}">
+<meta name="twitter:creator" content="{{ site.params.author.twitter }}">
+{% endif %}
+{% endif %}
+{% endwith %}
+{% endwith %}
+{% endwith %}

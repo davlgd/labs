@@ -1,0 +1,12 @@
+<div class="hm">
+  <div class="hm-cols">
+    <span></span>
+    <span class="hm-mo">J</span><span class="hm-mo">F</span><span class="hm-mo">M</span><span class="hm-mo">A</span><span class="hm-mo">M</span><span class="hm-mo">J</span><span class="hm-mo">J</span><span class="hm-mo">A</span><span class="hm-mo">S</span><span class="hm-mo">O</span><span class="hm-mo">N</span><span class="hm-mo">D</span>
+  </div>
+{% for row in site.heatmap_years %}
+  <div class="hm-row">
+    <span class="hm-yr">{{ row.year }}</span>
+{% for cell in row.cells %}{% if cell.empty %}<span class="hm-cell empty"></span>{% else %}<span class="hm-cell {% if cell.level == 0 %}z{% elif cell.level == 1 %}lo{% elif cell.level == 2 %}md{% else %}hi{% endif %}" title="{{ cell.key }}: {{ cell.count }} post{% if cell.count != 1 %}s{% endif %}"></span>{% endif %}{% endfor %}
+  </div>
+{% endfor %}
+</div>

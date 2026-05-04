@@ -1,0 +1,61 @@
+{% include "partials/_doc_open.html" %}
+<div class="page">
+  <div class="article-frame">
+    <div class="toc-stack">
+      {% if page.toc %}
+      <aside class="toc">
+        <div class="toc-head">contents</div>
+        {{ page.toc }}
+      </aside>
+      {% endif %}
+      <aside class="rail-card">
+        <div class="h">meta</div>
+        <div class="row"><span class="k">date</span><span class="v">{{ page.date | format_date("Jan 2, 2006") }}</span></div>
+        <div class="row"><span class="k">time</span><span class="v">{{ page.date | format_date("15:04 MST") }}</span></div>
+        <div class="row"><span class="k">read</span><span class="v">{{ page.reading_time }} min</span></div>
+        <div class="row"><span class="k">words</span><span class="v">{{ page.word_count }}</span></div>
+        <div class="row"><span class="k">tags</span><span class="v accent">{{ page.tags | length }}</span></div>
+        {% if site.params.editBaseUrl is defined %}
+        <a class="rail-link mono" href="{{ site.params.editBaseUrl }}{{ page.file.path }}" target="_blank" rel="noopener">▸ edit on github</a>
+        {% endif %}
+      </aside>
+    </div>
+
+    <article class="article">
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}<p class="article-lede reveal">{{ page.description }}</p>{% endif %}
+      {{ page.content }}
+
+      <div class="share-bar">
+        <span class="share-label mono">share ▸</span>
+{% with shareurl = page.permalink | urlencode %}
+{% with sharetitle = page.title | urlencode %}
+        <a class="share-link" href="https://bsky.app/intent/compose?text={{ sharetitle }}%20{{ shareurl }}" target="_blank" rel="noopener">↗ bluesky</a>
+        <a class="share-link" href="https://x.com/intent/post?url={{ shareurl }}&text={{ sharetitle }}" target="_blank" rel="noopener">↗ x</a>
+        <a class="share-link" href="mailto:?subject={{ sharetitle }}&body={{ shareurl }}">↗ email</a>
+{% endwith %}
+{% endwith %}
+        <a class="share-link" data-copy="{{ page.permalink }}" href="#" role="button">↗ copy link</a>
+        {% if site.params.editBaseUrl is defined %}
+        <a class="share-link" href="{{ site.params.editBaseUrl }}{{ page.file.path }}" target="_blank" rel="noopener">↗ raw .md</a>
+        {% endif %}
+      </div>
+
+      <div class="prev-next">
+{% if page.prev_in_section is defined %}{% if page.prev_in_section is not none %}
+        <a href="{{ page.prev_in_section.relpermalink }}" class="pn-card">
+          <div class="mono pn-dir">← cd ../prev</div>
+          <div class="pn-title">{{ page.prev_in_section.title }}</div>
+        </a>
+{% else %}<span></span>{% endif %}{% else %}<span></span>{% endif %}
+{% if page.next_in_section is defined %}{% if page.next_in_section is not none %}
+        <a href="{{ page.next_in_section.relpermalink }}" class="pn-card pn-next">
+          <div class="mono pn-dir">cd ../next →</div>
+          <div class="pn-title">{{ page.next_in_section.title }}</div>
+        </a>
+{% else %}<span></span>{% endif %}{% else %}<span></span>{% endif %}
+      </div>
+    </article>
+  </div>
+</div>
+{% include "partials/_doc_close.html" %}

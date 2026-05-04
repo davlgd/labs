@@ -1,0 +1,32 @@
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% if page.is_home %}{{ site.title }}{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
+
+{% include "partials/seo/meta.html" %}
+
+{% include "partials/seo/opengraph.html" %}
+
+{% include "partials/seo/twitter.html" %}
+
+{% include "partials/seo/jsonld.html" %}
+<link rel="stylesheet" href="{{ assets.css_url }}" integrity="{{ assets.css_integrity }}" crossorigin="anonymous">
+<link rel="preload" as="font" type="font/woff2" href="/fonts/jetbrains-mono-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/fonts/ibm-plex-sans-400.woff2" crossorigin>
+
+{% if site.params.favicon is defined %}
+<link rel="icon" href="{{ site.params.favicon | relurl }}">
+{% endif %}
+{% if page.has_rss %}
+<link rel="alternate" type="application/rss+xml" href="{{ page.rss_url }}" title="{{ site.title }}">
+{% endif %}
+<script>
+  (function(){try{var t=localStorage.getItem("blog-theme-tg2")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();
+  window.__navMap = {
+    h: "/",
+    l: "/posts/",
+    t: "/tags/",
+    p: "/projects/"
+  };
+</script>
+</head>

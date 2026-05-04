@@ -1,0 +1,16 @@
+<meta name="description" content="{{ page.description | default(site.params.tagline) }}">
+<link rel="canonical" href="{{ page.permalink }}">
+<meta name="generator" content="{{ site.generator | default("Verne") }}">
+{% if site.params.themeColor is defined %}
+<meta name="theme-color" content="{{ site.params.themeColor }}">
+{% endif %}
+{% if site.params.author is defined %}
+{% if site.params.author.name is defined %}
+<meta name="author" content="{{ site.params.author.name }}">
+{% endif %}
+{% endif %}
+{% if page.params.draft or page.params.noindex %}
+<meta name="robots" content="noindex,nofollow">
+{% else %}
+<meta name="robots" content="index,follow">
+{% endif %}

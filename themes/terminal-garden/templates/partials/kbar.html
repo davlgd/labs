@@ -1,0 +1,39 @@
+<div class="kbar-overlay" id="kbarOverlay" hidden>
+  <div class="kbar" role="dialog" aria-label="Command palette">
+    <div class="kbar-search">
+      <span class="prompt">⌕</span>
+      <input id="kbarInput" type="text" placeholder="Type a command or search posts…" autocomplete="off">
+      <kbd>ESC</kbd>
+    </div>
+    <div class="kbar-list">
+      <div class="kbar-empty" id="kbarEmpty" hidden>No matches. Try another query.</div>
+      <div class="kbar-section-h">navigation</div>
+      <div class="kbar-item" data-search="home" data-url="/">
+        <span class="icn">▸</span><span class="lbl">Home<span class="sub">/</span></span><span class="kbd">g h</span>
+      </div>
+      <div class="kbar-item" data-search="posts ls archive" data-url="/posts/">
+        <span class="icn">≡</span><span class="lbl">Posts<span class="sub">ls</span></span><span class="kbd">g l</span>
+      </div>
+      <div class="kbar-item" data-search="tags topics" data-url="/tags/">
+        <span class="icn">#</span><span class="lbl">Tags<span class="sub">all topics</span></span><span class="kbd">g t</span>
+      </div>
+      <div class="kbar-item" data-search="projects open source" data-url="/projects/">
+        <span class="icn">◇</span><span class="lbl">Projects<span class="sub">open source</span></span><span class="kbd">g p</span>
+      </div>
+<div class="kbar-item" data-search="search grep" data-url="/search/">
+        <span class="icn">⌕</span><span class="lbl">Search<span class="sub">grep -r</span></span><span class="kbd">/</span>
+      </div>
+      <div class="kbar-section-h" data-only-empty>recent posts</div>
+{% for p in site.posts %}
+      <div class="kbar-item{% if loop.index0 >= 5 %} kbar-only-search{% endif %}" data-search="{{ p.title }} {{ p.file.basename }} {{ p.tags | join(" ") }} {{ p.description }} {{ p.plain | plainify }}" data-url="{{ p.relpermalink }}">
+        <span class="icn">≡</span><span class="lbl">{{ p.title }}<span class="sub">{{ p.date | format_date("Jan 2, 2006") }}</span></span>
+      </div>
+{% endfor %}
+    </div>
+    <div class="kbar-foot">
+      <span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span>
+      <span><kbd>↵</kbd> select</span>
+      <span><kbd>esc</kbd> close</span>
+    </div>
+  </div>
+</div>

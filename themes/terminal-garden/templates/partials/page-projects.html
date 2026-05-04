@@ -1,0 +1,31 @@
+<div class="page">
+{% if page.description %}<div class="section-lede">{{ page.description }}</div>{% endif %}
+{% if site.projects %}
+  <div class="projects-grid">
+{% for p in site.projects %}
+    <a class="proj reveal" href="{{ p.url }}" target="_blank" rel="noopener">
+      <div class="proj-head">
+        <div class="proj-name">{{ p.name }}</div>
+        {% if p.stars > 0 %}<div class="proj-stars">{{ p.stars }}</div>{% endif %}
+      </div>
+      <div class="proj-desc">{{ p.desc }}</div>
+      <div class="proj-meta">
+        {% if p.tag %}<span class="tag-pill">#{{ p.tag }}</span>{% endif %}
+        <span class="status {{ p.status }}">
+          {% if p.status == "active" %}● active
+          {% elif p.status == "inactive" %}◐ inactive
+          {% elif p.status == "old" %}◌ old
+          {% elif p.status == "archived" %}■ archived
+          {% endif %}
+        </span>
+        <span class="year">since {{ p.year }}</span>
+      </div>
+    </a>
+{% endfor %}
+  </div>
+{% elif site.projects_error %}
+  <div class="section-lede">⚠ Could not fetch projects from GitHub: {{ site.projects_error }}</div>
+{% else %}
+  <div class="section-lede">No projects found.</div>
+{% endif %}
+</div>

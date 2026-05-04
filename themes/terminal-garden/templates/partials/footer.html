@@ -1,0 +1,7 @@
+<div class="foot">
+  <span><span class="blink-dot"></span>up {{ site.stats.uptime_years }}y · {{ site.stats.total_posts }} post{% if site.stats.total_posts != 1 %}s{% endif %} · last {{ site.stats.last_post_date | format_date("Jan 2, 2006") }}</span>
+  <span class="foot-socials">
+{% for s in site.footer_socials %}{% if not loop.first %} · {% endif %}<a href="{{ s.url }}"{% if s.label != "rss" %} target="_blank" rel="noopener"{% endif %}>{{ s.label }}</a>{% endfor %}
+  </span>
+  <span>© {{ now.year }} {{ site.params.handle | default("davlgd") }} · no tracking · hand-rolled</span>
+</div>

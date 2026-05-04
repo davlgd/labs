@@ -1,24 +1,5 @@
-# Legacy Astro project (kept locally for reference, not versioned)
-legacy/
-
-# Hugo build output
 public/
-resources/_gen/
-.hugo_build.lock
-
-# OS / editor cruft
+.cache/
+.build/
 .DS_Store
 Thumbs.db
-*.swp
-*.swo
-.idea/
-.vscode/
-
-# Local env / secrets
-.env
-.env.local
-*.local
-
-# Logs
-*.log
-npm-debug.log*

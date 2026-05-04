@@ -1,0 +1,3 @@
+[tools]
+"github:alecthomas/chroma" = "latest"
+"github:davlgd/verne" = "latest"

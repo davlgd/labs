@@ -1,0 +1,106 @@
+{% include "partials/_doc_open.html" %}
+<div class="page">
+  <div class="hero-grid">
+    <div class="pane reveal">
+      <div class="pane-head">
+        <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+        <div class="title">{{ site.params.handle | default("davlgd") }}@blog: ~ — zsh</div>
+        <span class="badge">live</span>
+      </div>
+      <div class="hero-main">
+        <div class="greet">$ cat /etc/motd</div>
+        <h1>
+          <span data-typewriter data-text="The" data-speed="32" data-delay="200">The</span>
+          <span> </span>
+          <span class="glow"><span data-typewriter data-text="tech lab" data-speed="50" data-delay="400">tech lab</span></span>
+          <span data-typewriter data-text=", where I" data-speed="32" data-delay="900">, where I</span>
+          <br>
+          <span data-typewriter data-text="break, build & learn things" data-speed="32" data-delay="1300">break, build &amp; learn things</span>
+        </h1>
+        <p class="lede">{{ site.params.about | markdownify }}</p>
+        <div class="hero-actions">
+{% if site.posts %}
+          <a class="btn primary" href="{{ site.posts[0].relpermalink }}">▸ read latest</a>
+{% endif %}
+          <a class="btn" href="/tags/"># browse tags</a>
+{% if site.params.socials is defined %}
+{% if site.params.socials.rss is defined %}
+          <a class="btn" href="{{ site.params.socials.rss }}">⊕ subscribe (rss)</a>
+{% endif %}
+{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="pane reveal">
+      <div class="pane-head">
+        <div class="title">~/system.status</div>
+        <span class="mono" style="color: var(--term-green); font-size: 10px">● up</span>
+      </div>
+      <div class="sys-pane">
+        <div class="sect-h">archive</div>
+        <div class="sys-row"><span class="k">posts</span><span class="v accent">{{ site.stats.total_posts }}</span></div>
+        <div class="sys-row"><span class="k">words</span><span class="v">{{ site.stats.total_words | format_number }}</span></div>
+        <div class="sys-row"><span class="k">avg length</span><span class="v">{{ site.stats.avg_words }} w</span></div>
+        <div class="sys-row"><span class="k">avg read</span><span class="v">{{ site.stats.avg_read }} min</span></div>
+        <div class="sect-h">timeline</div>
+        <div class="sys-row"><span class="k">since</span><span class="v">{{ site.stats.since_year }}</span></div>
+        <div class="sys-row"><span class="k">last post</span><span class="v">{{ site.stats.last_post_date | format_date("Jan 2, 2006") }}</span></div>
+        <div class="sys-row"><span class="k">tracking</span><span class="v ok">none</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-row">
+    <div class="pane filter-pane">
+      <div class="lbl">$ filter --tag</div>
+      <div class="filter-chips">
+        <button class="chip active" data-tag="all">all<span class="count">{{ site.stats.total_posts }}</span></button>
+{% for tag in site.popular_tags %}{% if loop.index <= 23 %}
+        <button class="chip" data-tag="{{ tag.name | lower }}">{{ tag.name | lower }}<span class="count">{{ tag.count }}</span></button>
+{% endif %}{% endfor %}
+{% if (site.popular_tags | length) > 23 %}
+        <a class="chip chip-more" href="/tags/">+{{ site.popular_tags_overflow }} more →</a>
+{% endif %}
+      </div>
+    </div>
+    <div class="pane stat-pane">
+      <div class="lbl">$ wc -l recent</div>
+      <div class="stat-grid">
+        <div class="stat"><div class="v accent" id="statVisible">{{ site.stats.total_posts }}</div><div class="k">visible</div></div>
+        <div class="stat"><div class="v" id="statMinTotal">{{ site.stats.total_read }}</div><div class="k">min total</div></div>
+        <div class="stat"><div class="v">{{ site.popular_tags | length }}</div><div class="k">tags</div></div>
+        <div class="stat"><div class="v" id="statAvgMin">{{ site.stats.avg_read }}</div><div class="k">avg min</div></div>
+      </div>
+    </div>
+    <div class="pane spark-pane">
+      <div class="lbl">$ history --heatmap</div>
+      {% include "partials/heatmap.html" %}
+    </div>
+  </div>
+
+  <div class="pane">
+    <div class="files-head">
+      <span class="h-num">#</span>
+      <span></span>
+      <span>name</span>
+      <span class="h-tags">tags</span>
+      <span class="h-date">modified</span>
+      <span>read</span>
+    </div>
+{% for p in site.posts %}
+    <a class="file-row{% if loop.first %} featured{% endif %}" href="{{ p.relpermalink }}" data-tags="{% for t in p.tags %}{% if not loop.first %},{% endif %}{{ t | lower }}{% endfor %}" data-read="{{ p.reading_time }}">
+      <span class="num">{{ loop.reverse_index | printf("%02d") }}</span>
+      <span class="icon">▸</span>
+      <span class="name">
+        <span class="glitch" data-text="{{ p.file.basename }}">{{ p.file.basename }}</span>
+        <span class="title">{{ p.title }}</span>
+      </span>
+      <span class="tags-cell">{% for t in p.tags %}#{{ t | lower }} {% endfor %}</span>
+      <span class="date-cell">{{ p.date | format_date("Jan 2, 2006") }}</span>
+      <span class="size-cell">{{ p.reading_time }}m</span>
+    </a>
+{% endfor %}
+  </div>
+</div>
+{% include "partials/_doc_close.html" %}

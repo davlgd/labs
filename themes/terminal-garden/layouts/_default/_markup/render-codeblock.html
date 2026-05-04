@@ -1,6 +1,0 @@
-{{- $lang := .Type | default "text" -}}
-<div class="code-wrap reveal" data-lang="{{ $lang }}">
-{{- highlight .Inner $lang "" -}}
-<span class="code-lang">{{ $lang }}</span>
-<button class="code-copy mono" type="button" aria-label="Copy code">copy</button>
-</div>

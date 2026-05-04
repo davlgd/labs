@@ -1,0 +1,46 @@
+baseURL: https://labs.davlgd.com/
+locale: en-us
+title: davlgd tech blog
+theme: terminal-garden
+enableRobotsTXT: true
+enableEmoji: true
+
+frontmatter:
+  date:
+    - pubDatetime
+    - date
+    - publishDate
+    - lastmod
+
+permalinks:
+  posts: /posts/:contentbasename/
+
+taxonomies:
+  tag: tags
+
+params:
+  handle: davlgd
+  githubUser: davlgd
+  # projectsTopic: showcase  # if set, only repos with this GitHub topic
+  tagline: The tech lab, where I break, build & learn things
+  defaultOgImage: /og-default.png
+  themeColor: "#3b82f6"
+  author:
+    name: David Legrand
+    handle: davlgd
+    twitter: "@davlgd"
+    bluesky: "@davlgd.fr"
+    url: https://www.davlgd.fr
+  about: |
+    Welcome to davlgd's tech lab — a blog where I share my thoughts, software/hardware experiments and discoveries.
+    I was a tech journalist for 20 years and I still see sharing what I learn as a deep commitment.
+  whoamiUrl: https://www.davlgd.fr
+  editBaseUrl: https://github.com/davlgd/labs/blob/main/content/
+  favicon: favicon.svg
+  socials:
+    rss: /index.xml
+    github: https://github.com/davlgd
+    gitlab: https://framagit.org/davlgd
+    bluesky: https://bsky.app/profile/davlgd.fr
+    x: https://x.com/davlgd
+    linkedin: https://www.linkedin.com/in/davlgd/

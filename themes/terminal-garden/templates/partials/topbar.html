@@ -1,0 +1,25 @@
+<div class="topbar">
+  <a class="brand" href="/">
+    <span class="glyph">d</span>
+    <span>{{ site.params.handle | default("davlgd") }}</span>
+    <span class="path">
+      <span class="sep">~/</span>blog{% if page.breadcrumb_path %}<span class="sep">/</span>{{ page.breadcrumb_path }}
+    {% endif %}</span>
+    <span class="cursor"></span>
+  </a>
+  <button class="kbar-trigger" type="button" aria-label="Open command palette">
+    <span style="color: var(--accent)">⌕</span>
+    <span class="placeholder">Jump to anything…</span>
+    <kbd>⌘K</kbd>
+  </button>
+  <nav class="nav">
+    <a class="{% if page.section == "posts" and page.is_section %}active{% endif %}" href="/posts/">ls</a>
+    <a class="{% if page.layout == "search" %}active{% endif %}" href="/search/">search</a>
+    <a class="{% if page.section == "tags" %}active{% endif %}" href="/tags/">tags</a>
+    <a class="{% if page.layout == "projects" %}active{% endif %}" href="/projects/">projects</a>
+    {% if site.params.whoamiUrl is defined %}
+    <a href="{{ site.params.whoamiUrl }}" target="_blank" rel="noopener" title="whoami">whoami ↗</a>
+    {% endif %}
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">☀</button>
+  </nav>
+</div>

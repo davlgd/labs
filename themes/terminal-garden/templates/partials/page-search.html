@@ -1,0 +1,19 @@
+<div class="page search-page">
+  <div class="search-shell">
+    <span class="prompt">grep -r</span>
+    <input id="searchInput" class="search-input" type="search" placeholder='"pattern" ./posts/' autocomplete="off">
+  </div>
+  <div class="search-meta" id="searchMeta">→ Type a pattern. Searches titles, tags, descriptions, and full post content.</div>
+  <div class="pane" id="searchResults">
+{% for p in site.posts %}
+    <a class="file-row" href="{{ p.relpermalink }}" data-tags="{% for t in p.tags %}{% if not loop.first %},{% endif %}{{ t | lower }}{% endfor %}" data-excerpt="{{ p.description | default(p.plain | plainify | truncate(200)) }}" data-content="{{ p.plain | plainify }}">
+      <span class="num"></span>
+      <span class="icon">▸</span>
+      <span class="name"><span>{{ p.file.basename }}</span><span class="title">{{ p.title }}</span></span>
+      <span class="tags-cell">{% for t in p.tags %}#{{ t | lower }} {% endfor %}</span>
+      <span class="date-cell">{{ p.date | format_date("Jan 2, 2006") }}</span>
+      <span class="size-cell">{{ p.reading_time }}m</span>
+    </a>
+{% endfor %}
+  </div>
+</div>

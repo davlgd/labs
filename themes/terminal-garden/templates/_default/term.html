@@ -1,0 +1,23 @@
+{% include "partials/_doc_open.html" %}
+<div class="page tags-page">
+{% with current = page.term %}
+{% include "partials/tags-cloud.html" %}
+{% endwith %}
+  <div class="pane reveal">
+    <div class="pane-head">
+      <div class="title mono">$ ls posts/ | grep "#{{ page.term | lower }}"</div>
+      <span class="mono" style="color: var(--accent); font-size: 10px">{{ page.pages | length }} match{% if (page.pages | length) != 1 %}es{% endif %}</span>
+    </div>
+{% for p in page.pages %}
+    <a class="file-row" href="{{ p.relpermalink }}">
+      <span class="num"></span>
+      <span class="icon">▸</span>
+      <span class="name"><span>{{ p.file.basename }}</span><span class="title">{{ p.title }}</span></span>
+      <span class="tags-cell">{% for t in p.tags %}#{{ t | lower }} {% endfor %}</span>
+      <span class="date-cell">{{ p.date | format_date("Jan 2, 2006") }}</span>
+      <span class="size-cell">{{ p.reading_time }}m</span>
+    </a>
+{% endfor %}
+  </div>
+</div>
+{% include "partials/_doc_close.html" %}

@@ -1,6 +1,6 @@
 name: Terminal Garden
 license: MIT
-description: A dark-first, terminal-flavored Hugo theme — typewriter hero, command palette, contributions heatmap, glitch hover, sticky TOC.
+description: A dark-first, terminal-flavored Verne theme — typewriter hero, command palette, contributions heatmap, glitch hover, sticky TOC.
 homepage: https://github.com/davlgd/labs
 tags:
   - blog
@@ -13,4 +13,3 @@ features:
   - search
   - dark-mode
   - command-palette
-min_version: 0.130.0

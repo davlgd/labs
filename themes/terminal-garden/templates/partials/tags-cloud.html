@@ -1,0 +1,8 @@
+<div class="tags-cloud reveal">
+{% for tag in site.popular_tags %}
+  <a class="tag-token{% if tag.name == current %} active{% endif %}" href="/tags/{{ tag.name | slugify }}/">
+    <span class="name">{{ tag.name | lower }}</span>
+    <span class="count">{{ tag.count }}</span>
+  </a>
+{% endfor %}
+</div>

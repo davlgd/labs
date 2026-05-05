@@ -235,6 +235,10 @@
 
   document.querySelectorAll(".kbar-trigger").forEach((b) => b.addEventListener("click", openKbar));
 
+  // ── Prev/next article (← / →) ────────────────────────────
+  const pnPrev = document.querySelector(".prev-next .pn-card:not(.pn-next)");
+  const pnNext = document.querySelector(".prev-next .pn-card.pn-next");
+
   // ── Global keys ──────────────────────────────────────────
   let gPending = false;
   const gTimer = { id: null };
@@ -258,6 +262,12 @@
     }
     if (inField) return;
     if (e.key === "/") { e.preventDefault(); openKbar(); return; }
+    // ← / → jump between posts, unless a scrollable/editable element has focus
+    const scrollable = e.target instanceof Element && e.target.closest("pre, select, [contenteditable]");
+    if (!scrollable && !e.metaKey && !e.ctrlKey && !e.altKey && !e.shiftKey && overlay?.hidden !== false) {
+      const pn = e.key === "ArrowLeft" ? pnPrev : e.key === "ArrowRight" ? pnNext : null;
+      if (pn) { e.preventDefault(); window.location.href = pn.href; return; }
+    }
     if (gPending) {
       const map = window.__navMap || {};
       const url = map[e.key];

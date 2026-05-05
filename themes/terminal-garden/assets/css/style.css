@@ -363,8 +363,19 @@ button { font-family: inherit; }
   color: var(--fg);
   position: relative;
 }
-.article ul, .article ol { margin: 0 0 18px; padding-left: 22px; }
-.article li { margin-bottom: 6px; }
+
+/* Lists — terminal markers, real indentation */
+.article ul, .article ol { margin: 6px 0 20px 26px; padding-left: 30px; }
+.article ul { list-style-type: "\25b8\00a0\00a0"; }
+.article ol { list-style-type: decimal; }
+.article li { margin-bottom: 3px; line-height: 1.7; }
+.article li::marker { color: var(--accent); font-family: var(--mono); font-size: 13px; }
+.article ul ul { list-style-type: "\00b7\00a0\00a0"; }
+.article ul ul > li::marker, .article ol ol > li::marker { color: var(--dim); }
+.article li > ul, .article li > ol { margin: 4px 0 0; padding-left: 24px; }
+.article li > p { margin-bottom: 6px; }
+.article li > :last-child { margin-bottom: 0; }
+
 .article p code, .article li code {
   font-family: var(--mono); font-size: 0.88em;
   background: var(--pane); border: 1px solid var(--hair);
@@ -380,6 +391,59 @@ button { font-family: inherit; }
 .article p a:hover, .article li a:hover { text-decoration-color: var(--accent); }
 .article p strong { color: var(--fg); font-weight: 600; }
 .article p em { color: var(--fg-soft); font-style: italic; }
+
+/* Blockquotes */
+.article blockquote {
+  margin: 22px 0 26px;
+  padding: 14px 20px;
+  background: var(--pane-2);
+  border: 1px solid var(--hair);
+  border-left: 3px solid var(--fg-soft);
+  border-radius: 0 6px 6px 0;
+}
+.article blockquote p, .article blockquote li {
+  color: var(--fg-soft); font-style: italic;
+  margin-bottom: 12px;
+}
+.article blockquote ul, .article blockquote ol { margin-bottom: 12px; }
+.article blockquote li::marker { color: var(--dim); }
+.article blockquote blockquote {
+  background: var(--pane-3); border-left-color: var(--dim); margin: 12px 0;
+}
+.article blockquote blockquote blockquote { border-left-color: var(--rule); }
+.article blockquote .code-wrap { margin: 12px 0; }
+.article blockquote pre { font-size: 12.5px; }
+.article blockquote > :last-child { margin-bottom: 0; }
+.article blockquote cite {
+  display: block; font-style: normal;
+  font-family: var(--mono); font-size: 12px; color: var(--dim);
+}
+.article blockquote cite::before { content: "\2014\00a0"; }
+
+/* GitHub-style callouts: > [!NOTE] … (rendered as <blockquote data-callout>) */
+.article blockquote[data-callout] {
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+.article blockquote[data-callout] p,
+.article blockquote[data-callout] li { color: var(--fg); font-style: normal; }
+.article blockquote[data-callout] .callout-badge {
+  font-family: var(--mono); font-size: 11px; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.article blockquote[data-callout] .callout-badge::before { content: "\25ba\00a0"; }
+.article blockquote[data-callout] .callout-title {
+  font-weight: 600; color: var(--fg); margin-bottom: 6px;
+}
+.article blockquote[data-callout="tip"] { border-left-color: var(--term-green); background: hsla(150, 55%, 45%, 0.09); }
+.article blockquote[data-callout="tip"] .callout-badge { color: var(--term-green); }
+.article blockquote[data-callout="important"] { border-left-color: var(--term-magenta); background: hsla(275, 60%, 55%, 0.10); }
+.article blockquote[data-callout="important"] .callout-badge { color: var(--term-magenta); }
+.article blockquote[data-callout="warning"],
+.article blockquote[data-callout="caution"] { border-left-color: var(--term-yellow); background: hsla(42, 80%, 55%, 0.08); }
+.article blockquote[data-callout="warning"] .callout-badge,
+.article blockquote[data-callout="caution"] .callout-badge { color: var(--term-yellow); }
 .article-lede {
   font-family: var(--mono);
   font-size: 15px !important; line-height: 1.7 !important;
@@ -517,6 +581,16 @@ button { font-family: inherit; }
 .pn-next { text-align: right; }
 .pn-dir { color: var(--dim); font-size: 11px; font-family: var(--mono); }
 .pn-title { font-family: var(--mono); font-size: 13px; font-weight: 500; margin-top: 4px; color: var(--fg); line-height: 1.4; }
+.pn-hint {
+  margin: 12px 0 0 !important;
+  text-align: center; font-size: 11px !important; color: var(--dim) !important;
+  display: flex; justify-content: center; align-items: center; gap: 5px;
+}
+.pn-hint kbd {
+  font-family: var(--mono); padding: 1px 6px; border-radius: 3px;
+  background: var(--pane-2); border: 1px solid var(--hair);
+  color: var(--fg-soft); font-size: 11px;
+}
 
 /* progress */
 .progress {

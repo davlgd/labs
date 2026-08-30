@@ -1,0 +1,238 @@
+# Static Web Server (SWS) configuration — loaded automatically from ./sws.toml
+# https://static-web-server.net/v2/features/url-redirects/
+#
+# Migration redirects: labs.davlgd.fr (AstroPaper) -> labs.davlgd.com (Verne).
+# Both hostnames point at this app; the .fr one only ever 301s to the .com.
+# Post and tag slugs are unchanged, so the catch-all at the bottom covers most
+# of the site. Everything above it is a path that moved or disappeared.
+#
+# Glob semantics, verified against SWS 2.43:
+#   `{*}` / `{**}` capture ONE path segment; only bare `**` crosses `/`.
+#   `$0` is the full match (leading slash included), `$1`.. are the groups.
+#   There is no optional-trailing-slash pattern: `{,/}` requires the slash and
+#   `*` never matches `/`. Paths whose target does not exist verbatim on the
+#   new site are therefore listed in both forms.
+#
+# Rules are evaluated in order: the catch-all MUST stay last.
+
+[advanced]
+
+# Feed was renamed: AstroPaper served /rss.xml, Verne serves /index.xml
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/rss.xml"
+destination = "https://labs.davlgd.com/index.xml"
+kind = 301
+
+# AstroPaper split its sitemap; Verne emits a single one
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/sitemap-index.xml"
+destination = "https://labs.davlgd.com/sitemap.xml"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/sitemap-0.xml"
+destination = "https://labs.davlgd.com/sitemap.xml"
+kind = 301
+
+# Tags were re-slugified: AstroPaper hyphenated compound words, Verne does not
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/astro-paper"
+destination = "https://labs.davlgd.com/tags/astropaper/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/astro-paper/"
+destination = "https://labs.davlgd.com/tags/astropaper/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/franken-php"
+destination = "https://labs.davlgd.com/tags/frankenphp/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/franken-php/"
+destination = "https://labs.davlgd.com/tags/frankenphp/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/git-hub"
+destination = "https://labs.davlgd.com/tags/github/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/git-hub/"
+destination = "https://labs.davlgd.com/tags/github/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/git-lab"
+destination = "https://labs.davlgd.com/tags/gitlab/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/git-lab/"
+destination = "https://labs.davlgd.com/tags/gitlab/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/green-it"
+destination = "https://labs.davlgd.com/tags/greenit/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/green-it/"
+destination = "https://labs.davlgd.com/tags/greenit/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/mac-os"
+destination = "https://labs.davlgd.com/tags/macos/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/mac-os/"
+destination = "https://labs.davlgd.com/tags/macos/"
+kind = 301
+
+# Paginated listings are gone; fold them back into their first page
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/posts/2"
+destination = "https://labs.davlgd.com/posts/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/posts/2/"
+destination = "https://labs.davlgd.com/posts/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/posts/3"
+destination = "https://labs.davlgd.com/posts/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/posts/3/"
+destination = "https://labs.davlgd.com/posts/"
+kind = 301
+
+# /tags/<tag>/<n> -> /tags/<tag>/  (tag pages are only one level deep)
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/{*}/{*}"
+destination = "https://labs.davlgd.com/tags/$1/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/tags/{*}/{*}/"
+destination = "https://labs.davlgd.com/tags/$1/"
+kind = 301
+
+# Astro emitted hashed asset names; the same images now live under /images/
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/_astro/2024-02-vlang-weasel.PDWHAZgk.webp"
+destination = "https://labs.davlgd.com/images/2024-02-vlang-weasel.webp"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/_astro/2024-03-franken-php.BsSP4urh_Z2iCSPf@1642w.webp"
+destination = "https://labs.davlgd.com/images/2024-03-franken-php.webp"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/_astro/2024-03-linux-oss-road.D0ui0w00.webp"
+destination = "https://labs.davlgd.com/images/2024-03-linux-oss-road.webp"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/_astro/2024-03-wasm-compiler-zig.BIKk4yFy.webp"
+destination = "https://labs.davlgd.com/images/2024-03-wasm-compiler-zig.webp"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/_astro/2024-04-transition-freedom-poetry.oVYlneH-.webp"
+destination = "https://labs.davlgd.com/images/2024-04-transition-freedom-poetry.webp"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/_astro/2024-05-chroot-linux.DZla3M00.webp"
+destination = "https://labs.davlgd.com/images/2024-05-chroot-linux.webp"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/_astro/2024-05-linux-craftsmanship.2kHQLmHP.webp"
+destination = "https://labs.davlgd.com/images/2024-05-linux-craftsmanship.webp"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/_astro/2024-10-v-compression.CZHit4oT.webp"
+destination = "https://labs.davlgd.com/images/2024-10-v-compression.webp"
+kind = 301
+
+# AstroPaper's OG image, dropped in the redesign: keep old social cards alive
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/davlgd-lab.webp"
+destination = "https://labs.davlgd.com/og-default.png"
+kind = 301
+
+# Pages with no equivalent on the new site
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/about"
+destination = "https://www.davlgd.fr/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/about/"
+destination = "https://www.davlgd.fr/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/archives"
+destination = "https://labs.davlgd.com/posts/"
+kind = 301
+
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "/archives/"
+destination = "https://labs.davlgd.com/posts/"
+kind = 301
+
+# Catch-all: same path on the new domain (posts and tags kept their slugs)
+[[advanced.redirects]]
+host = "labs.davlgd.fr"
+source = "**"
+destination = "https://labs.davlgd.com$0"
+kind = 301
+

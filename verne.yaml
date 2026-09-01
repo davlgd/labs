@@ -32,7 +32,7 @@ params:
     bluesky: "@davlgd.fr"
     url: https://www.davlgd.fr
   about: |
-    Welcome to davlgd's tech lab — a blog where I share my thoughts, software/hardware experiments and discoveries.
+    Welcome to the blog where I share my thoughts, software/hardware experiments and discoveries.
     I was a tech journalist for 20 years and I still see sharing what I learn as a deep commitment.
   whoamiUrl: https://www.davlgd.fr
   editBaseUrl: https://github.com/davlgd/labs/blob/main/content/

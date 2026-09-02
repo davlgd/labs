@@ -3,6 +3,7 @@
 #
 # Migration redirects: labs.davlgd.fr (AstroPaper) -> labs.davlgd.com (Verne).
 # Both hostnames point at this app; the .fr one only ever 301s to the .com.
+# A couple of rules below also apply to the .com itself (see the feed rename).
 # Post and tag slugs are unchanged, so the catch-all at the bottom covers most
 # of the site. Everything above it is a path that moved or disappeared.
 #
@@ -20,6 +21,13 @@
 # Feed was renamed: AstroPaper served /rss.xml, Verne serves /index.xml
 [[advanced.redirects]]
 host = "labs.davlgd.fr"
+source = "/rss.xml"
+destination = "https://labs.davlgd.com/index.xml"
+kind = 301
+
+# Same rename on the new domain: old feed URLs still land on the current feed
+[[advanced.redirects]]
+host = "labs.davlgd.com"
 source = "/rss.xml"
 destination = "https://labs.davlgd.com/index.xml"
 kind = 301

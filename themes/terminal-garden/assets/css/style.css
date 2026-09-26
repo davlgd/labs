@@ -831,3 +831,36 @@ mark { background: var(--accent); color: var(--accent-fg); padding: 0 2px; borde
   .files-head .h-num, .file-row .num, .files-head .h-tags, .file-row .tags-cell, .files-head .h-date, .file-row .date-cell { display: none; }
   .about { grid-template-columns: 1fr; padding: 24px; }
 }
+
+/* ── Responsive: topbar ───────────────────────────────────────── */
+/* Below desktop the breadcrumb truncates instead of wrapping, and the
+   palette trigger keeps room for its icon and shortcut. */
+@media (max-width: 1100px) {
+  .topbar { grid-template-columns: minmax(0, auto) minmax(64px, 1fr) auto; }
+  .brand { min-width: 0; }
+  .brand .glyph, .brand .cursor { flex-shrink: 0; }
+  .brand .path { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+/* Phones: brand + icon buttons on the first row, nav on the second. */
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; }
+  .topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 8px; padding: 12px 0 6px;
+  }
+  .kbar-trigger {
+    width: 30px; height: 30px; padding: 0; margin-right: 38px;
+    justify-content: center;
+  }
+  .kbar-trigger .placeholder, .kbar-trigger kbd { display: none; }
+  .theme-toggle { position: absolute; top: 12px; right: 0; }
+  .nav {
+    grid-column: 1 / -1; justify-content: space-between;
+    margin: 0 -8px; overflow-x: auto; scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { padding: 7px 8px; white-space: nowrap; flex-shrink: 0; }
+}
+@media (max-width: 420px) {
+  .nav a::before { display: none; }
+}

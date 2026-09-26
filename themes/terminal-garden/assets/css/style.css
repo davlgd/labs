@@ -943,3 +943,10 @@ mark { background: var(--accent); color: var(--accent-fg); padding: 0 2px; borde
   .foot { flex-direction: column; align-items: center; text-align: center; gap: 8px; }
   .notfound { padding: 36px 0; }
 }
+/* Smallest phones: keep the hero title on three lines while it types */
+@media (max-width: 340px) {
+  .hero-main h1 { font-size: 25px; }
+}
+@media (max-width: 310px) {
+  .hero-main h1 { min-height: 4.4em; }
+}

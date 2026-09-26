@@ -864,3 +864,37 @@ mark { background: var(--accent); color: var(--accent-fg); padding: 0 2px; borde
 @media (max-width: 420px) {
   .nav a::before { display: none; }
 }
+
+/* ── Responsive: article ──────────────────────────────────────── */
+/* minmax(0, 1fr) lets <pre> and long TOC entries scroll or wrap instead of
+   stretching the single column past the viewport. */
+@media (max-width: 980px) {
+  .article-frame { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .article h2, .article h3 { scroll-margin-top: 72px; }
+  .article p, .article li, .article h1, .article h2, .article h3,
+  .toc a, .pn-title { overflow-wrap: break-word; }
+  .article table { display: block; max-width: 100%; overflow-x: auto; }
+}
+@media (max-width: 980px) and (hover: none) {
+  .code-copy { opacity: 1; }
+  .pn-hint { display: none; }
+}
+@media (max-width: 760px) {
+  .article { padding: 24px 18px 28px; }
+  .article h1 { font-size: 28px; margin-bottom: 14px; }
+  .article h2 { font-size: 20px; margin: 30px 0 12px; }
+  .article h2, .article h3 { scroll-margin-top: 110px; }
+  .article p, .article li { font-size: 13.5px; }
+  .article-lede { font-size: 14px !important; margin-bottom: 22px !important; }
+  .article ul, .article ol { margin-left: 0; padding-left: 22px; }
+  .article li > ul, .article li > ol { padding-left: 18px; }
+  .article blockquote { padding: 12px 14px; }
+  .article pre { padding: 14px 14px 14px 16px; font-size: 12px; }
+  .callout { padding: 12px 14px; }
+  .rail-card { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+  .rail-card .h, .rail-card .rail-link { grid-column: 1 / -1; }
+  .share-bar { margin-top: 32px; padding: 14px; gap: 8px; }
+  .share-bar .share-label { width: 100%; }
+  .prev-next { grid-template-columns: 1fr; gap: 10px; }
+  .prev-next > span:empty { display: none; }
+}

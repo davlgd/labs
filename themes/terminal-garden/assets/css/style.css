@@ -898,3 +898,45 @@ mark { background: var(--accent); color: var(--accent-fg); padding: 0 2px; borde
   .prev-next { grid-template-columns: 1fr; gap: 10px; }
   .prev-next > span:empty { display: none; }
 }
+
+/* ── Responsive: home, lists and other pages ──────────────────── */
+/* Stop mobile Safari from inflating text in landscape. */
+@media (max-width: 980px) {
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+}
+@media (max-width: 980px) and (hover: none) {
+  .kbar-foot, .kbar-item .kbd, .kbar-search kbd { display: none; }
+}
+@media (max-width: 760px) {
+  .hero-grid { margin-top: 14px; gap: 14px; margin-bottom: 14px; }
+  .dash-row { gap: 14px; margin-bottom: 14px; }
+  .hero-main { padding: 20px 18px 18px; }
+  .hero-main h1 { font-size: 28px; min-height: 3.3em; }
+  .hero-main .lede { font-size: 14px; }
+  .sys-pane, .filter-pane, .stat-pane, .spark-pane { padding-left: 14px; padding-right: 14px; }
+
+  /* File rows: stack the file name above the full title */
+  .files-head, .file-row { padding-left: 12px; padding-right: 12px; }
+  .file-row { align-items: start; padding-top: 9px; padding-bottom: 9px; }
+  .file-row .name { white-space: normal; }
+  .file-row .name > span:first-child {
+    display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .file-row .name .title { display: block; margin: 2px 0 0; line-height: 1.45; }
+
+  .tags-cloud { padding: 16px; }
+  .projects-grid { gap: 12px; }
+  .proj { padding: 16px 18px; }
+  .proj-meta { flex-wrap: wrap; }
+  .search-shell { padding: 12px 14px; gap: 10px; }
+  .search-shell .prompt { font-size: 13px; white-space: nowrap; }
+  .search-input { min-width: 0; }
+
+  .kbar-overlay { padding: 10vh 12px 0; }
+  .kbar { max-width: 100%; }
+  .kbar-search input { font-size: 16px; }
+  .kbar-list { max-height: min(360px, 55vh); }
+
+  .foot { flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+  .notfound { padding: 36px 0; }
+}

@@ -488,6 +488,7 @@ button { font-family: inherit; }
   color: var(--fg-soft); cursor: pointer;
   opacity: 0; transition: all 0.15s;
   text-transform: uppercase; letter-spacing: 0.06em;
+  z-index: 1; /* keep it above the positioned <pre> */
 }
 .code-wrap:hover .code-copy { opacity: 1; }
 .code-copy:hover { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
@@ -874,8 +875,6 @@ mark { background: var(--accent); color: var(--accent-fg); padding: 0 2px; borde
   .article p, .article li, .article h1, .article h2, .article h3,
   .toc a, .pn-title { overflow-wrap: break-word; }
   .article table { display: block; max-width: 100%; overflow-x: auto; }
-  /* The positioned <pre> is painted over the copy button otherwise */
-  .code-copy { z-index: 1; }
 }
 @media (max-width: 980px) and (hover: none) {
   .code-copy { opacity: 1; }

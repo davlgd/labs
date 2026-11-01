@@ -123,7 +123,7 @@ $ whois -h whois.iana.org de | grep '^whois'
 whois:        whois.denic.de
 ```
 
-That is the logic of the small client I am writing in V: RDAP first, through the bootstrap file, and WHOIS when the extension is not in it. More on that soon.
+That is the logic of [vWhois](https://github.com/davlgd/vWhois), the small client I am writing in V: RDAP first, through the bootstrap file, and WHOIS when the extension is not in it. More on that soon.
 
 ## What you will not find
 

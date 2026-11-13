@@ -17,7 +17,7 @@
           <br>
           <span data-typewriter data-text="break, build & learn things" data-speed="32" data-delay="1300">break, build &amp; learn things</span>
         </h1>
-        <p class="lede">{{ site.params.about | markdownify }}</p>
+        <div class="lede">{{ site.params.about | markdownify }}</div>
         <div class="hero-actions">
 {% if site.posts %}
           <a class="btn primary" href="{{ site.posts[0].relpermalink }}">▸ read latest</a>

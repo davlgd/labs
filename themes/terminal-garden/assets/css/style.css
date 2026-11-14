@@ -479,6 +479,17 @@ button { font-family: inherit; }
   margin-top: 8px; font-size: 11px; color: var(--dim);
   text-align: center; font-family: var(--mono);
 }
+/* Two images written on consecutive lines of the same Markdown paragraph
+   sit side by side; a blank line between them keeps them stacked. */
+.article-figure:has(+ .article-figure),
+.article-figure + .article-figure {
+  display: inline-block; width: calc(50% - 8px); vertical-align: top;
+}
+.article-figure:has(+ .article-figure) { margin-right: 10px; }
+@media (max-width: 760px) {
+  .article-figure:has(+ .article-figure),
+  .article-figure + .article-figure { display: block; width: 100%; margin-right: 0; }
+}
 
 .code-wrap { position: relative; margin: 22px 0 26px; }
 .code-wrap pre { margin: 0 !important; }

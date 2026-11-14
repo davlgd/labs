@@ -479,6 +479,18 @@ button { font-family: inherit; }
   margin-top: 8px; font-size: 11px; color: var(--dim);
   text-align: center; font-family: var(--mono);
 }
+/* Tables: spacing and rules, so they do not stick to the next paragraph */
+.article table { border-collapse: collapse; margin: 20px 0 24px; font-size: 14px; }
+.article th, .article td {
+  padding: 7px 12px; text-align: left; vertical-align: top;
+  border-bottom: 1px solid var(--rule);
+}
+.article th { font-weight: 600; color: var(--fg); white-space: nowrap; }
+@media (max-width: 760px) {
+  .article table { font-size: 13px; }
+  .article th, .article td { padding: 6px 8px; }
+}
+
 /* Lightbox: an article image opens full screen in a <dialog> (see app.js) */
 .article-figure img { cursor: zoom-in; }
 .article-figure img:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

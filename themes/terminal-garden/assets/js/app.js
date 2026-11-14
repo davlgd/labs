@@ -156,6 +156,37 @@
     });
   });
 
+  // ── Image lightbox ───────────────────────────────────────
+  // Click, tap or Enter on an article image opens it in a modal <dialog>;
+  // click, tap or Escape closes it. Pinch-zoom keeps working inside.
+  const figImgs = document.querySelectorAll(".article-figure img");
+  if (figImgs.length && typeof HTMLDialogElement !== "undefined") {
+    let box;
+    const openBox = (img) => {
+      if (!box) {
+        box = document.createElement("dialog");
+        box.className = "lightbox";
+        box.innerHTML = '<img alt=""><p class="lightbox-cap mono"></p>';
+        box.addEventListener("click", () => box.close());
+        document.body.appendChild(box);
+      }
+      const big = box.querySelector("img");
+      big.src = img.currentSrc || img.src;
+      big.alt = img.alt;
+      box.querySelector(".lightbox-cap").textContent = img.alt;
+      box.showModal();
+    };
+    figImgs.forEach((img) => {
+      img.tabIndex = 0;
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", `Enlarge image: ${img.alt}`);
+      img.addEventListener("click", () => openBox(img));
+      img.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openBox(img); }
+      });
+    });
+  }
+
   // ── Article TOC active state ─────────────────────────────
   const tocLinks = document.querySelectorAll(".toc a[href^='#']");
   if (tocLinks.length) {
@@ -245,6 +276,8 @@
   document.addEventListener("keydown", (e) => {
     const tag = (document.activeElement?.tagName || "").toUpperCase();
     const inField = tag === "INPUT" || tag === "TEXTAREA";
+    // An open lightbox owns the keyboard: Escape closes it natively.
+    if (document.querySelector("dialog.lightbox[open]")) return;
     if (!overlay?.hidden) {
       if (e.key === "Escape") { e.preventDefault(); closeKbar(); return; }
       if (e.key === "ArrowDown") { e.preventDefault(); setKbarSel(kbarSel + 1); return; }
